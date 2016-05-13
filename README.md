@@ -1,5 +1,12 @@
 # Mapofa: Make podio fun again
 
+* Clone the source code.
+* Run `npm install`.
+* Run `npm start`.
+* Open chrome extension. Choose add package extension. Point to `dev` folder
+inside this folder.
+* Using the chrome_app_id put the url: `chrome-extension:<chrome_app_id>/test.html`. **You should see the unit test**
+
 
 ## Structure
 

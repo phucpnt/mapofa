@@ -144,11 +144,7 @@ npm test
 
 ## Roadmap
 
-- [x] Web app
-- [x] Electron app
-- [x] Chrome app
-- [x] Chrome extension
-- [x] Firefox extension (see [the current status](https://github.com/zalmoxisus/crossbuilder/issues/12))
+TODO
 
 ## LICENSE
 

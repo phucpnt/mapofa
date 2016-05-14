@@ -68,6 +68,7 @@
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",
     "jsdom": "^8.1.0",
+    "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
@@ -90,12 +91,14 @@
   "dependencies": {
     "chrome-storage-local": "^0.1.5",
     "crossmessaging": "^0.2.0",
+    "podio-js": "^1.4.2",
     "react": "^0.14.7 || ^15.0.0",
     "react-dom": "^0.14.7 || ^15.0.0",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
     "redux-notify": "^0.1.1",
     "redux-persist": "^2.0.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "urijs": "^1.18.0"
   }
 }

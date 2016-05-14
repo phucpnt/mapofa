@@ -52,8 +52,12 @@ const config = baseConfig({
           }
         ]
       ]
-    }
-  }]
+    },
+  }, {
+    test: /\.json$/,
+    loader: 'json',
+  },
+  ]
 });
 
 config.devtool = 'eval';

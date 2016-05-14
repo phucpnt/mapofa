@@ -1,4 +1,5 @@
 let windows = {};
+let tabs = {};
 
 function focusIfExist(name, callback) {
   if (!windows[name]) callback();
@@ -33,4 +34,8 @@ export function popWindow(name, customOptions) {
       }
     });
   });
+}
+
+export function showTab(name){
+  chrome.tabs.create({ url: chrome.extension.getURL(name + '.html') });
 }

@@ -1,7 +1,8 @@
-import { popWindow } from 'extension/utils/windows';
+import { popWindow, showTab } from '../utils/windows';
 
 const menus = [
-  ['Redux Counter App', ['all'], () => popWindow('window')] // 'window' - is the html page name
+  ['Mapofa Test', ['all'], () => showTab('test')], // 'test' - is the html page name
+  ['Mapofa', ['all'], () => popWindow('window')], // 'window' - is the html page name
 ];
 
 function addToMenu(title, contexts, onclick, moreOptions) {

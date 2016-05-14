@@ -1,4 +1,6 @@
 mocha.setup({ui: 'bdd', timeout: 10 * 1000});
+mocha.allowUncaught();
+
 const req = require.context('./inbrowser/', true, /.*\.spec\.js/);
 
 req.keys().forEach((key) => {

@@ -2,21 +2,20 @@
  * Created by phucpnt on 5/14/16.
  */
 
-import { expect } from 'chai';
+import {expect} from 'chai';
 import connectPodio from './helper/connect-podio';
 import Q from 'q';
 
 
 connectPodio((podio) => {
   const workspaceId = 4555999; // front end ng
+  const userId = podio.authObject.ref.id; // FIXME: not clean way to get userId
 
-  describe('Podio connection', () => {
-    let userId = podio.authObject.ref.id; // FIXME: not clean way to get userId
+  describe('Podio Repo', () => {
     it('should get current user', (done) => {
       podio.request('GET', '/user').then(data => {
         expect(data.user_id).not.to.be.null;
         expect(data.user_id).to.be.a('number');
-        userId = data.user_id;
         done();
       });
       expect('hello podio').to.equal('hello podio');
@@ -28,6 +27,21 @@ connectPodio((podio) => {
         done();
       });
     });
+  });
+
+  describe('Podio WorkSpace', () => {
+    describe('As team member', () => {
+      it('I can see list of my teammates', (done) => {
+        podio.request('GET', `/space/${workspaceId}/member`, null).then(data => {
+          expect(data).to.be.an('array');
+          console.info('teammates >', data);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('Podio Task', () => {
     describe('As team member', () => {
       let demoTask = [];
       after(done => { // clean up tested task
@@ -35,7 +49,7 @@ connectPodio((podio) => {
       });
 
       it('I can see all tasks in team', (done) => {
-        podio.request('GET', '/task', { space: [workspaceId] }).then(data => {
+        podio.request('GET', '/task', {space: [workspaceId]}).then(data => {
           console.info('team task > ', data);
           expect(data).to.be.an('array');
           done();

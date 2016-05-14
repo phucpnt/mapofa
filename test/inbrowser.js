@@ -1,11 +1,17 @@
-const req = require.context('mocha-loader!./inbrowser/', true, /.*\.spec\.js/);
+mocha.setup({ui: 'bdd', timeout: 10 * 1000});
+const req = require.context('./inbrowser/', true, /.*\.spec\.js/);
 
 req.keys().forEach((key) => {
   req(key);
 });
 
 if (module.hot) {
-  module.hot.accept('./inbrowser', () => {
+  module.hot.accept();
+  module.hot.dispose(() => {
     window.location.reload();
   });
 }
+
+window.setTimeout(() => {
+  mocha.run();
+});

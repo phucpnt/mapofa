@@ -22,11 +22,11 @@ const sessionStore = {
 let _podioInstance;
 
 function podioInstance() {
-  return _podioInstance ? _podioInstance : (_podioInstance = new PodioJs({
+  return _podioInstance || (_podioInstance = new PodioJs({
     authType: 'server',
     clientId: 'mapofa',
     clientSecret: 'pfPUmjzqgKQrfQV9J9jVhksfsY5YKGtD7Ckrxx5ifC7fxQsrF8JTS4VKCqoUYvDY',
-  }, {sessionStore}));
+  }, { sessionStore }));
 }
 
 export function doAuth(callback) {

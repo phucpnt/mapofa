@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../../src/app/constants/ActionTypes';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../../src/app/constants/action-type';
 import * as actions from '../../../src/app/actions/counter';
 
 const middlewares = [thunk];

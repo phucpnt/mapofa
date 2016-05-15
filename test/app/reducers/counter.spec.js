@@ -1,6 +1,6 @@
 import expect from 'expect';
 import counter from '../../../src/app/reducers/counter';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../../src/app/constants/ActionTypes';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../../src/app/constants/action-type';
 
 describe('reducers', () => {
   describe('counter', () => {

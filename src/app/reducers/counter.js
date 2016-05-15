@@ -1,6 +1,6 @@
 import {
   INCREMENT_COUNTER, DECREMENT_COUNTER, NOTIFY_SEND, NOTIFY_RECEIVE
-} from '../constants/ActionTypes';
+} from '../constants/action-type';
 
 export default function counter(state = { count: 0 }, action) {
   if (

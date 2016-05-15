@@ -6,7 +6,7 @@ import notifyEvents from '../events/notifyEvents';
 
 export default function configureStore(callback, isBg) {
   let getState;
-  if (isBg === undefined) getState = require('./getStoredState'); /* If you don't want to persist states, use './getDefaultState' */// eslint-disable-line max-len
+  if (isBg === undefined) getState = require('./getDefaultState'); /* If you don't want to persist states, use './getDefaultState' */// eslint-disable-line max-len
   else getState = (isBg ? require('./getStateToBg') : require('./getStateFromBg'));
 
   getState(initialState => {

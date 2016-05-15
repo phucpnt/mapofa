@@ -26,6 +26,6 @@ configureStore(store => {
   initBadge(store.getState().counter.count);
 
   if (process.env.NODE_ENV !== 'production') {
-    require('./inject');
+    // require('./inject');
   }
 }, true);

@@ -3,18 +3,15 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title Redux Counter Example
-  style.
-    body {
-      font-size: 22px;
-      text-align: center;
-    }
-    button {
-      font-size: 18px;
-      margin: 5px 0;
-    }
+    title.
+      Mapofa - Make podio fun again
+    link(rel="stylesheet", href="/adminlte/bootstrap/css/bootstrap.css")
+    link(rel="stylesheet", href="/adminlte/dist/css/adminLTE.css")
+    link(rel="stylesheet", href="/adminlte/dist/css/skins/skin-yellow-light.css")
 
-  body
-    #root
+  body.skin-yellow-light.layout-top-nav
+    .wrapper
+      #root
   include ./includes/devtools.jade
   script(src=env === 'prod' ? '/js/window.bundle.js' : 'http://localhost:3000/js/window.bundle.js')
+

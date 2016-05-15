@@ -1,0 +1,23 @@
+.flex-wrapper-horiz {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  .horiz-static {
+    height: 100%;
+    flex: 0 0 auto;
+  }
+
+  .horiz-expand {
+    height: 100%;
+    flex: 1 1 auto;
+    position: relative;
+  }
+
+  .horiz-expand-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}

@@ -38,6 +38,10 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins, loaders }) => (
       {
         test: /\.css?$/,
         loaders: ['style', 'raw']
+      },
+       {
+        test: /\.less?$/,
+        loaders: ['style-loader', 'css-loader?sourceMap', 'less-loader?sourceMap']
       }
     ]
   }

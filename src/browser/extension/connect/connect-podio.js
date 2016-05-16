@@ -30,10 +30,9 @@ function podioInstance() {
 }
 
 export function doAuth(callback) {
-  const podio = podionInstance();
+  const podio = podioInstance();
 
   podio.isAuthenticated().then(() => {
-    // do something
     callback(podio);
   }).catch((err) => {
     chrome.identity.launchWebAuthFlow({

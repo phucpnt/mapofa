@@ -104,11 +104,16 @@ connectPodio((podio) => {
         it('I can see all the active phases', (done) => {
           podio.request('POST', `/item/app/${phaseAppId}/filter`, {space_id: workspaceId}).then(data => {
             console.log('phases items > ', data);
-            expect(data).to.be.an('array');
+            expect(data).to.be.an('object');
+            expect(data.items).to.be.an('array');
+            expect(data.filtered).to.be.a('number');
             done();
-          });
+          }).catch(done);
         });
-        it('I can create new phase for 1 product');
+        it('I can create new phase for 1 product', (done) => {
+          expect(false).to.be.true;
+          done();
+        });
         it('I can create task inside one phase');
       });
     });

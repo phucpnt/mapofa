@@ -5,7 +5,7 @@
 import {expect} from 'chai';
 import connectPodio from './helper/connect-podio';
 import Q from 'q';
-
+import moment from 'moment';
 
 connectPodio((podio) => {
   const workspaceId = 4555999; // front end ng
@@ -107,6 +107,30 @@ connectPodio((podio) => {
             expect(data).to.be.an('object');
             expect(data.items).to.be.an('array');
             expect(data.filtered).to.be.a('number');
+            done();
+          }).catch(done);
+        });
+        it('I can see all the active phases in week', (done) => {
+          podio.request('POST', `/item/app/${phaseAppId}/filter`, {
+            filters: {
+              [121824264]: { // start date
+                from: moment().startOf('week').format('YYYY-MM-DD'),
+                to: moment().endOf('week').format('YYYY-MM-DD')
+              },
+              [121824265]: { // end date
+                from: moment().startOf('week').format('YYYY-MM-DD'),
+                to: moment().endOf('week').format('YYYY-MM-DD')
+              }
+            }
+          }).then(data => {
+            console.log('phases items > ', data);
+            expect(data).to.be.an('object');
+            expect(data.items).to.be.an('array');
+            expect(data.filtered).to.be.a('number');
+            expect(data.items.some(item => {
+              const fieldStart = item.fields.find(field => field.field_id == 121824264);
+              return !moment(fieldStart.values[0].start_utc, 'YYYY-MM-DD').isBetween(moment().startOf('week'), moment().endOf('week'));
+            })).to.be.false;
             done();
           }).catch(done);
         });

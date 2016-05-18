@@ -7,6 +7,8 @@ export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 /**
  * task actions
  */
+export const TASK_LIST_REQUEST = 'task/request';
+export const TASK_LIST_RECEIVE = 'task/receive';
 export const TASK_REQUEST = 'task/request';
 export const TASK_RECEIVE = 'task/receive';
 export const TASK_CREATE = 'task/create';
@@ -25,6 +27,8 @@ export const MS_DELETE = 'ms/delete';
 /**
  * phase actions
  */
+export const PHASE_LIST_REQUEST = 'phase/request';
+export const PHASE_LIST_RECEIVE = 'phase/request';
 export const PHASE_REQUEST = 'phase/request';
 export const PHASE_RECEIVE = 'phase/receive';
 export const PHASE_CREATE = 'phase/create';

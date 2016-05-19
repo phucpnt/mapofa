@@ -1,4 +1,5 @@
 import {isConnected} from './connect-podio';
+import taskOps from './task';
 
 export default function getApi({
     workspaceId = 4555999,
@@ -9,17 +10,7 @@ export default function getApi({
 }) {
 
   const api = podio => ({
-    getProduct({filter}) {
-    },
-
-    getPhase({filter}) {
-    },
-
-    getMilestone({filter}) {
-    },
-
-    getTask({filter}) {
-    },
+    task: taskOps(podio)
   });
 
 

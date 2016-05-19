@@ -3,12 +3,13 @@
  */
 
 import React, {Component, PropTypes} from 'react';
+import makeGantt from '../containers/gantt/container-gantt';
 
 /**
  * using [dhtmlx gantt](http://docs.dhtmlx.com/gantt/desktop__guides.html)
  * Object type support: project, milestone, task
  */
-export default class GanttChart extends Component {
+class GanttChart extends Component {
 
   componentDidMount() {
     gantt.init(this.refs.gantt);
@@ -44,6 +45,7 @@ export default class GanttChart extends Component {
         {"id":"21","source":"15","target":"23","type":"2"}
       ]
     });
+    this.props.load({timeFrame: this.props.timeFrame});
 
   }
 
@@ -56,3 +58,5 @@ export default class GanttChart extends Component {
     );
   }
 }
+
+export default makeGantt(GanttChart);

@@ -23,7 +23,7 @@ configureStore(store => {
   };
 
   createMenu();
-  initBadge(store.getState().counter.count);
+  // initBadge();
 
   if (process.env.NODE_ENV !== 'production') {
     // require('./inject');

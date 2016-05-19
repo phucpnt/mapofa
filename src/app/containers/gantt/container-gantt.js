@@ -2,21 +2,25 @@
  * Created by phucpnt on 5/17/16.
  */
 
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import * as actionGantt from './action-gantt';
 
 function containerGantt(ComGantt) {
 
   class WrappedGantt extends Component {
 
     render() {
-      const {productList, phaseList, msList, taskList} = this.props;
+      const { productList, phaseList, msList, taskList, timeFrame } = this.props;
+      const { load } = this.props;
       return (
           <ComGantt
+              timeFrame={timeFrame}
               productList={productList}
               phaseList={phaseList}
               msList={msList}
               taskList={taskList}
+              load={load}
           />
       );
     }
@@ -39,12 +43,12 @@ function containerGantt(ComGantt) {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
+  return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  load({timeFrame}){
-    dispatch(actionGantt.load({timeFrame}));
+  load({ timeFrame }) {
+    dispatch(actionGantt.load({ timeFrame: timeFrame || ownProps.timeFrame }));
   }
 });
 

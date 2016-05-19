@@ -2,7 +2,7 @@
  * Created by phucpnt on 5/14/16.
  */
 
-import {doAuth, isConnected} from '../../../src/browser/extension/connect/connect-podio';
+import {doAuth, isConnected} from '../../../src/browser/extension/connect/podio/connect-podio';
 
 export default function requireConnect(callback) {
   return isConnected().then(callback).catch(() => {

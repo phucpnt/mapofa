@@ -8,7 +8,7 @@ export function load({timeFrame}) {
   return (dispatch, getState) => {
     // dispatch(actionProduct.load({timeFrame}));
     // dispatch(actionMilestone.load({timeFrame}));
-    dispatch(actionTask.filter({timeFrame}));
+    dispatch(actionTask.filterList({timeFrame}));
     // dispatch(actionTask.load({timeFrame}));
   };
 }

@@ -32,6 +32,7 @@ function containerGantt(ComGantt) {
       '3month', '6month', // mid-term
       'q1', 'q2', 'q3', 'q4', 'year', 'next-year' // long-term
     ]),
+    taskList: PropTypes.array,
   };
 
   WrappedGantt.defaultProps = {
@@ -43,7 +44,9 @@ function containerGantt(ComGantt) {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {};
+  return {
+    taskList: state.app.task.items
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

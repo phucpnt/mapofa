@@ -1,30 +1,8 @@
 /**
- * Created by phucpnt on 5/18/16.
+ * Created by phucpnt on 5/21/16.
  */
 
-import moment from 'moment';
-import _ from 'lodash';
-import * as TF from '../../../../app/constants/timeframe';
-import formalizeItemObj from './helper/formalize-obj-item';
-
-function translateTimeFrame(timeFrame) {
-  switch (timeFrame) {
-    case TF.WEEK:
-      return {
-        from: moment().startOf('week'),
-        to: moment().endOf('week')
-      };
-    case TF.NEXT_WEEK:
-      return {
-        from: moment().startOf('week').add(1, 'week'),
-        to: moment().endOf('week').add(1, 'week'),
-      };
-    default:
-      throw new Error('Unknown timeframe');
-  }
-}
-
-export default function taskOps(podio, { appId, appField }) {
+export default function personOps(podio, { appId, appField }) {
 
   console.log(appId, appField);
 

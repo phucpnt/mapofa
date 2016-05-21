@@ -87,6 +87,7 @@ connectPodio((podio) => {
           console.log(items);
           expect(items).to.be.an('array');
           expect(items).to.have.length.above(1);
+          expect(items[0].startDate).to.be.a('date');
           done();
         }).catch(err => done(err));
       });

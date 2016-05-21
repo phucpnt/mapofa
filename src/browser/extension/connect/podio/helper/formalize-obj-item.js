@@ -1,9 +1,25 @@
 /**
  * Created by phucpnt on 5/19/16.
  */
+import moment from 'moment';
+import toMarkdown from 'to-markdown';
 
 function getFieldValue(poField) {
-  return poField.values[0];
+  let val = null;
+  switch (poField.type) { //
+    case 'date':
+      val = moment.utc(poField.values[0].start_utc).toDate();
+      break;
+    case 'text':
+      val = toMarkdown(poField.values[0].value);
+      break;
+    case 'duration':
+      val = poField.values[0].value / (60 * 60);
+      break;
+    default:
+      val = poField.values[0].value;
+  }
+  return val;
 }
 
 function extractItemFields(poFields, objFields) {
@@ -27,8 +43,8 @@ export default function formalize(poItem, AppField) {
     item_id: 'id',
     link: 'link'
   };
-  let finalObj = {};
-  finalObj = Object.keys(commonFields).reduce((accum, key) => {
+
+  let finalObj = Object.keys(commonFields).reduce((accum, key) => {
     if (typeof poItem[key] !== 'undefined') {
       accum[commonFields[key]] = poItem[key];
     }
@@ -37,4 +53,5 @@ export default function formalize(poItem, AppField) {
 
   return Object.assign({}, finalObj, extractItemFields(poItem.fields, AppField));
 }
+
 

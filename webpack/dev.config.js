@@ -13,6 +13,11 @@ const testPath = path.join(__dirname, '../test/');
 console.log(testPath);
 
 const config = baseConfig({
+  globals: {
+    'process.env': {
+      NODE_ENV: '"DEVELOPMENT"'
+    }
+  },
   input: {
     background: [`${srcPath}extension/background/`, ...entry],
     window: [`${srcPath}window/`, ...entry],

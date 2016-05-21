@@ -4,6 +4,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import makeGantt from '../containers/gantt/container-gantt';
+import gantt from 'dhtmlxgantt';
 
 /**
  * using [dhtmlx gantt](http://docs.dhtmlx.com/gantt/desktop__guides.html)
@@ -11,8 +12,9 @@ import makeGantt from '../containers/gantt/container-gantt';
  */
 class GanttChart extends Component {
 
-  componentWillUpdate(nextProps) {
+  componentDidUpdate(nextProps) {
     const { taskList } = nextProps;
+    console.log(taskList);
     gantt.parse({
       data: taskList.map(task => {
         return {
@@ -34,10 +36,15 @@ class GanttChart extends Component {
     gantt.config.duration_unit = 'hour';
     gantt.config.scale_height = 20 * 3;
     gantt.config.row_height = 30;
+    gantt.config.drag_progress = false;
 
-    // gantt.attachEvent('onBeforeLightBox', function(id){
-    //   return false;
-    // });
+    gantt.config.work_time = true;
+    gantt.setWorkTime({ hours: [8, 18] });
+
+    gantt.attachEvent('onBeforeLightBox', (id) => {
+      console.log(gantt.getTask(id));
+      return false;
+    });
 
     const weekScaleTemplate = function (date) {
       const dateToStr = gantt.date.date_to_str('%d %M');
@@ -49,16 +56,18 @@ class GanttChart extends Component {
     gantt.config.subscales = [
       { unit: 'month', step: 1, date: '%F, %Y' },
       { unit: 'week', step: 1, template: weekScaleTemplate }
-
     ];
 
     gantt.templates.task_cell_class = function (task, date) {
-      if (!gantt.isWorkTime(date))
-        return 'week_end';
-      return '';
+      return !gantt.isWorkTime(date, 'day') ? 'week_end' : '';
     };
-    
+
     gantt.config.drag_process = false;
+    gantt.config.columns = [
+      { name: 'text', label: 'Subject', width: '*', tree: true },
+      { name: 'start_date', label: 'Start time', align: 'center' },
+      { name: 'duration', label: 'Duration', align: 'center' }
+    ];
   }
 
   componentDidMount() {

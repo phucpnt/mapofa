@@ -2,10 +2,7 @@
  * Created by phucpnt on 5/21/16.
  */
 import React, { Component, PropTypes } from 'react';
-import StructTask from '../struct/task';
-
-import t from 'tcomb-form';
-
+import FormTask from './form/task';
 
 class FormSticky extends Component {
 
@@ -17,8 +14,8 @@ class FormSticky extends Component {
   render() {
     return (
         <div className="form-sticky">
-          <form onSubmit={this.onSubmit}>
-            <t.form.Form ref="form" type={StructTask}/>
+          <form className="container-fluid" onSubmit={this.onSubmit}>
+            <FormTask />
             <button type="submit" className="btn btn-success">Save</button>
           </form>
         </div>

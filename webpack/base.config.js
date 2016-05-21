@@ -44,7 +44,10 @@ const baseConfig = ({ input, output = {}, globals = {}, plugins, loaders }) => (
         loaders: ['style-loader', 'css-loader?sourceMap', 'less-loader?sourceMap']
       }
     ]
-  }
+  },
+  externals:{
+    'dhtmlxgantt': 'gantt',
+  },
 });
 
 export default baseConfig;

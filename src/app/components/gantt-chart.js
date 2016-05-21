@@ -35,6 +35,10 @@ class GanttChart extends Component {
     gantt.config.scale_height = 20 * 3;
     gantt.config.row_height = 30;
 
+    // gantt.attachEvent('onBeforeLightBox', function(id){
+    //   return false;
+    // });
+
     const weekScaleTemplate = function (date) {
       const dateToStr = gantt.date.date_to_str('%d %M');
       const weekNum = gantt.date.date_to_str('(week %W)');

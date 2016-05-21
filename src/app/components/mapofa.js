@@ -7,6 +7,7 @@ import React from 'react';
 
 import GanttChart from './gantt-chart';
 import ConnStatusPodio from './connection-status-podio';
+import FormSticky from './form-sticky';
 
 const Mapofa = () => (
     <div className="main-wrapper">
@@ -26,7 +27,9 @@ const Mapofa = () => (
         <div className="mapofa-wrapper">
           <div className="flex-wrapper-horiz">
               <div className="horiz-static col-md-8"><GanttChart /></div>
-              <div className="horiz-static col-md-4">Task list here</div>
+              <div className="horiz-static col-md-4">Task list here
+                <FormSticky />
+              </div>
             </div>
         </div>
       </div>

@@ -16,3 +16,13 @@ export const DevTaskField = {
   belongsToPhase: 122418166,
   description: 122343384,
 };
+
+export const ContactField = {
+  id: 'profile.user_id',
+  name: 'profile.name',
+  link: 'profile.link',
+  avatar: 'profile.image.link',
+  avatar_thumbnail: 'profile.image.thumbnail_link',
+  type: 'profile.type',
+  role: 'role'
+};

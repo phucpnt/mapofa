@@ -1,7 +1,15 @@
 @import 'grid';
+@import 'variables';
 
 .mapofa-wrapper {
   height: ~"calc(100vh - 50px)";
+}
+
+.top-btn-add{
+  background-color: @green;
+  &:hover, &:focus{
+    background-color: lighten(@green, 5%) !important;
+  }
 }
 
 .gantt-chart-wrapper {
@@ -26,6 +34,7 @@
 
 
 .form-sticky {
+  display: none;
   position: fixed;
   height: ~"calc(100vh - 50px)";
   box-sizing: border-box;

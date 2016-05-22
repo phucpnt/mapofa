@@ -1,9 +1,13 @@
-import React from 'react';
-
-import StructTask from '../../struct/task';
+import React, { PropTypes } from 'react';
 import t from 'tcomb-form';
 
+import makeContactComponent from '../../containers/contact/container-contact';
+import StructTask from '../../struct/task';
+import FormTagSelect from './tag-select';
+
 const FormTask = (props) => {
+  
+  console.log(props.contactList);
 
   const options = {
     config: {
@@ -22,6 +26,9 @@ const FormTask = (props) => {
     fields: {
       description: {
         type: 'textarea'
+      },
+      assignee: {
+        template: FormTagSelect(props.contactList)
       }
     }
   };
@@ -34,4 +41,10 @@ const FormTask = (props) => {
   );
 };
 
-export default FormTask;
+FormTask.propTypes = {
+  contactList: PropTypes.array,
+  value: PropTypes.object
+};
+
+
+export default makeContactComponent(FormTask);

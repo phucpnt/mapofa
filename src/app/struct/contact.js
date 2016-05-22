@@ -7,5 +7,8 @@ import t from 'tcomb-form';
 const Contact = t.struct({
   id: t.Number,
   avatar: t.maybe(t.String),
+  avatarThumbnail: t.maybe(t.String),
   name: t.String,
 });
+
+export default Contact;

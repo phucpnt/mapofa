@@ -22,7 +22,7 @@ export const ContactField = {
   name: 'profile.name',
   link: 'profile.link',
   avatar: 'profile.image.link',
-  avatar_thumbnail: 'profile.image.thumbnail_link',
+  avatarThumbnail: 'profile.image.thumbnail_link',
   type: 'profile.type',
   role: 'role'
 };

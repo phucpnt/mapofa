@@ -3,6 +3,7 @@
  */
 
 import t from 'tcomb-form';
+import contact from './contact';
 
 const Task = t.struct({
   subject: t.String,
@@ -14,7 +15,7 @@ const Task = t.struct({
   startDate: t.maybe(t.Date),
   estHours: t.maybe(t.Integer),
   // estEndDate: 122343564,
-  assignee: t.maybe(t.list(t.String)),
+  assignee: t.maybe(t.list(contact)),
   belongsToPhase: t.maybe(t.Array),
   description: t.maybe(t.String),
 });

@@ -97,6 +97,7 @@
     "react-addons-update": "^15.0.2",
     "react-dom": "^0.14.7 || ^15.0.0",
     "react-redux": "^4.4.0",
+    "react-select": "^1.0.0-beta13",
     "redux": "^3.3.1",
     "redux-notify": "^0.1.1",
     "redux-persist": "^2.0.1",

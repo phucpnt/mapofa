@@ -13,8 +13,8 @@ class FormSticky extends Component {
 
   render() {
     return (
-        <div className="form-sticky">
-          <form className="container-fluid" onSubmit={this.onSubmit}>
+        <div className="form-sticky container-fluid">
+          <form className="form-horizontal" onSubmit={this.onSubmit}>
             <FormTask />
             <button type="submit" className="btn btn-success">Save</button>
           </form>

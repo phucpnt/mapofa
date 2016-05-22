@@ -1,6 +1,7 @@
 import { isConnected } from './connect-podio';
 import taskOps from './task';
-import { DevTaskField} from './helper/podio-id-list';
+import contactOps from './contact';
+import { DevTaskField } from './helper/podio-id-list';
 
 export default function getApi({
     workspaceId = 4555999,
@@ -12,6 +13,7 @@ export default function getApi({
 
   const api = podio => ({
     task: taskOps(podio, { appId: taskAppId, appField: DevTaskField }),
+    contact: contactOps(podio, { workspaceId })
   });
 
 

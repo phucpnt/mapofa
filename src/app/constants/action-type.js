@@ -40,3 +40,9 @@ export const PHASE_DELETE = 'phase/delete';
  */
 export const PRODUCT_REQUEST = 'product/request';
 export const PRODUCT_RECEIVE = 'product/receive';
+
+/**
+ * contact actions
+ */
+export const CONTACT_REQUEST = 'contact/request';
+export const CONTACT_RECEIVE = 'contact/receive';

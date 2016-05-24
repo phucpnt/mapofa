@@ -33,6 +33,7 @@ function containerGantt(ComGantt) {
       'q1', 'q2', 'q3', 'q4', 'year', 'next-year' // long-term
     ]),
     taskList: PropTypes.array,
+    load: PropTypes.func,
   };
 
   WrappedGantt.defaultProps = {

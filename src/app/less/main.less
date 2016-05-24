@@ -7,9 +7,9 @@
 
 .top-btn-add{
   color: #fff !important;
-  background-color: @green;
+  background-color: @yellow;
   &:hover, &:focus{
-    background-color: lighten(@green, 5%) !important;
+    background-color: lighten(@yellow, 5%) !important;
   }
 }
 
@@ -26,8 +26,7 @@
 }
 
 .gantt_task_cell.week_end{
-  //background-color: #EFF5FD;
-  background-color: red;
+  background-color: @gray;
 }
 .gantt_task_row.gantt_selected .gantt_task_cell.week_end{
   background-color: #F8EC9C;
@@ -35,6 +34,7 @@
 
 
 .form-sticky {
+  display: none;
   position: fixed;
   height: ~"calc(100vh - 50px)";
   box-sizing: border-box;

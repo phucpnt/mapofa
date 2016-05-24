@@ -16,7 +16,7 @@ class MenuTop extends Component {
           <div className="navbar-custom-menu">
             <ul className="nav navbar-nav">
               <li>
-                <a className="top-btn-add" onClick={onAdd} href="#"><i className="fa fa-plus"/></a>
+                <a className="top-btn-add" onClick={onAdd} href="#"><i className="fa fa-plus"/> Add</a>
               </li>
               <li>
                 <a href="#"><ConnStatusPodio /></a>

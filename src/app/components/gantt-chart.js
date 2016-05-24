@@ -12,19 +12,20 @@ import gantt from 'dhtmlxgantt';
  */
 class GanttChart extends Component {
 
-  componentDidUpdate(nextProps) {
-    const { taskList } = nextProps;
-    console.log(taskList);
+  componentDidUpdate() {
+    const { taskList } = this.props;
     gantt.parse({
       data: taskList.map(task => {
-        return {
+        const ganttTask = {
           id: task.id,
           text: task.subject,
           start_date: task.startDate,
-          duration: task.estHours,
+          duration: Math.floor(task.estHours / 24) + (Math.ceil(2 * (task.estHours % 24) / 8) / 2),
           assignee: task.assignee,
           description: task.description
         };
+        console.log(ganttTask);
+        return ganttTask;
       })
     });
   }
@@ -33,7 +34,7 @@ class GanttChart extends Component {
     gantt.config.scale_unit = 'day';
     gantt.config.date_scale = '%D, %d';
     gantt.config.min_column_width = 60;
-    gantt.config.duration_unit = 'hour';
+    gantt.config.duration_unit = 'day';
     gantt.config.scale_height = 20 * 3;
     gantt.config.row_height = 30;
     gantt.config.drag_progress = false;
@@ -64,7 +65,7 @@ class GanttChart extends Component {
 
     gantt.config.drag_process = false;
     gantt.config.columns = [
-      { name: 'text', label: 'Subject', width: '*', tree: true },
+      { name: 'text', label: 'Subject', width: '*', tree: true, align: 'left' },
       { name: 'start_date', label: 'Start time', align: 'center' },
       { name: 'duration', label: 'Duration', align: 'center' }
     ];
@@ -86,8 +87,9 @@ class GanttChart extends Component {
   }
 }
 
-GanttChart.defaultProps = {
+GanttChart.propTypes = {
   taskList: PropTypes.array,
+  load: PropTypes.func,
 };
 
 export default makeGantt(GanttChart);

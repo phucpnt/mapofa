@@ -12,7 +12,7 @@ export function filterList({ timeFrame }) {
     return getRepo({})
         .then(api => api.task.filterList({ timeFrame }))
         .then((data) => {
-          return dispatch({ type: TASK_LIST_RECEIVE, payload: {items: data} });
+          return dispatch({ type: TASK_LIST_RECEIVE, payload: { items: data } });
         });
   };
 

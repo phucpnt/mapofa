@@ -82,11 +82,11 @@ class TagValue extends Component {
       marginRight: 5,
       height: 20,
     };
-    const {name, avatarThumbnail} = this.props.value;
+    const { name, avatarThumbnail } = this.props.value;
     return (
         <div className="Select-value" title={this.props.value.title}>
 				<span className="Select-value-label">
-          <span style={style}><img style={imgStyle} src={avatarThumbnail} />{name}</span>
+          <span style={style}><img style={imgStyle} src={avatarThumbnail}/>{name}</span>
           {this.props.children}
 				</span>
         </div>

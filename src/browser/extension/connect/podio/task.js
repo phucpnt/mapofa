@@ -34,7 +34,8 @@ export default function taskOps(podio, { appId, appField }) {
         [appField.startDate]: translateTimeFrame(timeFrame),
       }
     })
-        .then(data => data.items.map(item => formalizeItemObj(item, appField)));
+        .then(data => data.items.map(item => formalizeItemObj(item, appField)))
+        ;
   };
 
   const create = taskDetails => {
@@ -42,7 +43,8 @@ export default function taskOps(podio, { appId, appField }) {
       return appField[key];
     });
     return podio.request('POST', `/item/app/${appId}`, { fields: itemFields })
-        .then(poItem => formalizeItemObj(poItem, appField));
+        .then(poItem => formalizeItemObj(poItem, appField))
+        ;
   };
 
   const remove = taskId => {

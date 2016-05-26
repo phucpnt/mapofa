@@ -29,13 +29,19 @@ connectPodio((podio) => {
   describe('Podio Notification', () => {
     it('As the Manager, I want to be filter request notification directly to me', (done) => {
       api.getAll().then(items => {
-        expect(items).to.have.length.above(0);
+        console.log('alert', items);
+        expect(items).to.have.length.above(0); // more specific checking
+        expect(items[0]).to.have.deep.property('notifications[0].type', 'alert');
+        expect(items[0]).to.have.deep.property('notifications[0].data.text').that.is.a('string');
+        expect(items[0]).to.have.deep.property('notifications[0].data.ref.type', 'comment');
+        expect(items[0]).to.have.deep.property('notifications[0].data.ref.id').that.is.a('number');
         done();
       }).catch(done);
     });
     it('As the Manager, I want to be filter request comments related to me', (done) => {
       api.getAll('comment').then(items => {
-        expect(items).to.have.length.above(0);
+        console.log('comment', items);
+        expect(items).to.have.length.above(0); // more specific checking
         done();
       }).catch(done);
     });
@@ -44,7 +50,7 @@ connectPodio((podio) => {
        * Todo making reference item should be scope with specific items type and space.
        */
       api.getAll('member_reference_add').then(items => {
-        console.log('notifications', items);
+        console.log('notifications', items); // more specific checking
         expect(items).to.have.length.above(0);
         done();
       }).catch(done);
@@ -71,6 +77,7 @@ connectPodio((podio) => {
 
       it.skip('allow me to send a comment to item', (done) => {
         api.sendComment('item', 423017623, api.sample.suggestForInvalidDelegateComment).then(comment => {
+          expect(comment.id).to.be.exist;
           done();
         }).catch(done);
       });
@@ -78,6 +85,7 @@ connectPodio((podio) => {
       it('it allow me to do the comment with mention to user', (done) => {
         const userId = podio.authObject.ref.id;
         api.sendComment('item', 423017623, `hello @[phucpnt](user:${userId}) how are you?`).then(comment => {
+          expect(comment.id).to.be.exist;
           done();
         }).catch(done);
       });

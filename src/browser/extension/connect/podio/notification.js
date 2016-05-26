@@ -7,12 +7,15 @@ import _ from 'lodash';
 import * as TF from '../../../../app/constants/timeframe';
 import formalizeItemObj from './helper/formalize-obj-item';
 
+export const TYPE_MEMBER_REFERENCE_ADD = 'member_reference_add';
+export const TYPE_ALERT = 'alert'; // directly mention to me
+export const TYPE_COMMENT = 'comment';
 
 export default function notificationOps(podio, { appId, appField }) {
 
   const suggestForInvalidDelegateComment = `Thx for copying me. 
-  It seems you **not use correct** pattern for FrontEnd request.
-  Please use the following pattern: *{request_categories} @phucpnt {@suggested_person_to_handle_request}*.
+  For request to frontend use the following pattern: 
+  *ferequest {request_categories} @phucpnt {@suggested_person_to_handle_request}*.
   By doing that new task for front end would be created and take care of.
   Note:
   *request_categories*: must be "bug" or "feature".

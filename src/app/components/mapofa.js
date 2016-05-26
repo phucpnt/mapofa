@@ -23,7 +23,7 @@ const Mapofa = () => (
         <div className="mapofa-wrapper">
           <div className="flex-wrapper-horiz">
             <div className="horiz-static col-md-8"><GanttChart /></div>
-            <div className="horiz-static col-md-4">Task list here
+            <div className="horiz-static col-md-4">My Tasks
               <FormSticky />
             </div>
           </div>

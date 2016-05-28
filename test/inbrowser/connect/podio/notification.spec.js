@@ -3,12 +3,9 @@
  */
 
 import { expect } from 'chai';
-import _ from 'lodash';
-import moment from 'moment';
-import Q from 'q';
 
 import connectPodio from '../../helper/connect-podio';
-import notifOps from '../../../../src/browser/extension/connect/podio/notification';
+import notifOps, { TYPE_MEMBER_REFERENCE_ADD } from '../../../../src/browser/extension/connect/podio/notification';
 
 // for testing only
 const appId = 15852506;
@@ -89,6 +86,48 @@ connectPodio((podio) => {
           done();
         }).catch(done);
       });
+
+    });
+
+    describe.only('With notifications reference @me', () => {
+      let refItems = [];
+      before(done => {
+        api.getAll(TYPE_MEMBER_REFERENCE_ADD).then(commentList => {
+          refItems = refItems.concat(commentList.map(item => {
+            return item.context;
+          }));
+          console.log('%cREF ITEMS', 'background:red;color:white', refItems);
+          done();
+        }).catch(done);
+      });
+
+      it('Those notifications should be existed', () => {
+        expect(refItems).to.have.length.above(0);
+      });
+
+      it('it should have user references for first item', (done) => {
+        let refItem = refItems[0];
+        expect(refItem).to.have.deep.property('ref.id').that.is.a('number');
+        expect(refItem).to.have.deep.property('ref.type', 'item');
+        console.log(podio);
+        let appUser = podio.authObject.ref;
+        let itemId = refItem.ref.id;
+        podio.request('GET', `/item/${itemId}`).then(item => {
+          console.log('response', item);
+          expect(item).to.have.property('fields').that.have.length.above(0);
+          const contactFields = item.fields.filter(field => field.type === 'contact');
+          expect(contactFields).to.have.length.above(0);
+          const contacts = contactFields.reduce((accum, curField) => {
+            accum = accum.concat(curField.values.map(value => value.value));
+            return accum;
+          }, []);
+          expect(contacts).to.have.length.above(0);
+          console.log('contacts', contacts);
+          expect(contacts.some(contact => contact.user_id === appUser.id)).to.be.true;
+          done();
+        }).catch(done);
+      });
+
 
     });
   });

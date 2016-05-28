@@ -15,6 +15,7 @@ export const DevTaskField = {
   assignee: 122343382,
   belongsToPhase: 122418166,
   description: 122343384,
+  relatedTo: 122418166,
 };
 
 export const ContactField = {

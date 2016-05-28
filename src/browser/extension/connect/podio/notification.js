@@ -11,7 +11,7 @@ export const TYPE_MEMBER_REFERENCE_ADD = 'member_reference_add';
 export const TYPE_ALERT = 'alert'; // directly mention to me
 export const TYPE_COMMENT = 'comment';
 
-export default function notificationOps(podio, { appId, appField }) {
+export default function notificationOps(podio) {
 
   const suggestForInvalidDelegateComment = `Thx for copying me. 
   For request to frontend use the following pattern: 
@@ -21,8 +21,6 @@ export default function notificationOps(podio, { appId, appField }) {
   *request_categories*: must be "bug" or "feature".
   *@suggested_person_to_handle_request*: could be any person in front end except PhucPNT.
   `;
-
-  console.log(appId, appField);
 
   const getAll = (type = 'alert') => {
     return podio.request('GET', '/notification/', { type }).then(items => {

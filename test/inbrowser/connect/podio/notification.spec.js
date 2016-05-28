@@ -89,7 +89,7 @@ connectPodio((podio) => {
 
     });
 
-    describe.only('With notifications reference @me', () => {
+    describe('With notifications reference @me', () => {
       let refItems = [];
       before(done => {
         api.getAll(TYPE_MEMBER_REFERENCE_ADD).then(commentList => {

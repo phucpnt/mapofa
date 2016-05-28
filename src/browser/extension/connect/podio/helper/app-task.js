@@ -51,8 +51,8 @@ export function getAppSetupConfig(workspaceId, {
     },
     {
       type: 'date',
-      external_id: 'startDate',
       config: {
+        external_id: 'startDate',
         label: 'Start date', settings: {
           calendar: true,
           end: 'disabled',
@@ -85,7 +85,8 @@ export function getAppSetupConfig(workspaceId, {
         external_id: 'assignee',
         label: 'Assignee', settings: {
           type: 'space_users'
-        }
+        },
+        mapping: 'meeting_participants',
       }
     },
     {
@@ -107,6 +108,8 @@ export function getAppSetupConfig(workspaceId, {
       name,
       item_name: itemName,
       icon,
+      rsvp: true,
+      rsvp_label: 'Awaiting task for you if you accept',
     },
     fields: fields.map((field, index) => {
       field.config.delta = index;

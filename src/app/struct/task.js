@@ -7,6 +7,11 @@ import contact from './contact';
 
 const Task = t.struct({
   subject: t.String,
+  category: t.enums({
+    backlog: 'Backlog',
+    bug: 'Bug',
+    feature: 'Feature'
+  }),
   status: t.enums({
     notStarted: 'Not Started',
     inProgress: 'In Progress',

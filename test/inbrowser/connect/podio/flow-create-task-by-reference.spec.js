@@ -5,26 +5,28 @@ import { expect } from 'chai';
 import Q from 'q';
 
 import connectPodio, { getAppTaskDetails } from '../../helper/connect-podio';
-import { process1By1 } from '../../../../src/browser/extension/connect/podio/flow/create-backlog-by-reference';
+import createBacklogByRef, { process1By1 } from '../../../../src/browser/extension/connect/podio/flow/create-backlog-by-reference';
 import { WORKSPACE_ID as TEST_WORKSPACE_ID, SNAPP_TASK } from '../../helper/constants';
 import notifOps, { TYPE_MEMBER_REFERENCE_ADD } from '../../../../src/browser/extension/connect/podio/notification';
 import taskOps from '../../../../src/browser/extension/connect/podio/task';
+import contactOps from '../../../../src/browser/extension/connect/podio/contact';
 const workspaceId = 4555999;
 
 
 connectPodio(podio => {
   describe.only('Process ', () => {
     const api = notifOps(podio);
+    const apiContact = contactOps(podio, { workspaceId });
     let refItems = [];
     let members = [];
 
     const getNotifListByRef = () => {
       return api.getAll(TYPE_MEMBER_REFERENCE_ADD).then(commentList => {
-        const refItems = commentList.map(item => {
+        const itemList = commentList.map(item => {
           return item.context;
         });
-        console.log('%cREF ITEMS', 'background:red;color:white', refItems);
-        return refItems;
+        console.log('%cREF ITEMS', 'background:red;color:white', itemList);
+        return itemList;
       });
     };
 
@@ -35,11 +37,9 @@ connectPodio(podio => {
           console.log('refItems', refItems);
           return refItems;
         }),
-        podio.request('GET', `/space/${workspaceId}/member`).then(memberList => {
-          members = memberList.map(member => member.user);
-          console.log('members', members);
-          return members;
-        })
+        apiContact.getAll().then(itemList => {
+          members = itemList;
+        }),
       ]).then(() => done()).catch(done);
     });
 
@@ -47,7 +47,7 @@ connectPodio(podio => {
       expect(refItems).to.have.length.above(0);
     });
 
-    it('it should have user references for first item', (done) => {
+    it('it should create task for 1 reference item', (done) => {
       let refItem = refItems[0];
       expect(refItem).to.have.deep.property('ref.id').that.is.a('number');
       expect(refItem).to.have.deep.property('ref.type', 'item');
@@ -71,7 +71,7 @@ connectPodio(podio => {
         const taskAppDetails = getAppTaskDetails();
         process1By1(podio, {
           appUser, members,
-          taskOps: taskOps(podio, {
+          apiTask: taskOps(podio, {
             appId: taskAppDetails.appId,
             appField: taskAppDetails.appFields,
           })
@@ -80,6 +80,10 @@ connectPodio(podio => {
         });
       }).catch(done);
     });
-
+    it('it should run the flow correctly', done => {
+      const taskAppDetails = getAppTaskDetails();
+      createBacklogByRef(podio, { appId: taskAppDetails.appId, appField: taskAppDetails.appFields, workspaceId })
+          .then(items => Q.all).then(() => done()).catch(done);
+    });
   });
-})
+});

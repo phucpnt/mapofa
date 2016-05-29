@@ -2,14 +2,8 @@
  * Created by phucpnt on 5/28/16.
  */
 
-export function getAppSetupConfig(workspaceId, {
-    type = 'meeting',
-    name = 'Dev Task',
-    itemName = 'devtask',
-    icon = '107.png',
-}) {
-
-  const fields = [
+export function getFields() {
+  return [
     {
       type: 'text',
       config: {
@@ -100,6 +94,16 @@ export function getAppSetupConfig(workspaceId, {
       }
     }
   ];
+}
+
+export function getAppSetupConfig(workspaceId, {
+    type = 'meeting',
+    name = 'Dev Task',
+    itemName = 'devtask',
+    icon = '107.png',
+}) {
+
+  const fields = getFields();
 
   return {
     space_id: workspaceId,
@@ -118,3 +122,4 @@ export function getAppSetupConfig(workspaceId, {
   };
 
 }
+

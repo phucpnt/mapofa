@@ -28,6 +28,28 @@ export default function taskOps(podio, { appId, appField }) {
 
   console.log(appId, appField);
 
+  let appList = [];
+
+  function _getAcceptedAppList() {
+    return new Promise((resolve, reject) => {
+      if (appList.length > 0) {
+        resolve(appList);
+      }
+
+      podio.request('GET', `/app/${appId}`).then(app => {
+        console.log('TASK APP', app);
+        const relatedFieldSetup = app.fields.find(field => field.field_id === appField.relatedTo);
+        if (relatedFieldSetup) {
+          appList = relatedFieldSetup.config.settings.referenced_apps.map(item => item.app_id);
+          resolve(appList);
+        } else {
+          reject();
+        }
+      }, reject).catch(reject);
+
+    });
+  }
+
   const filterList = ({ timeFrame }) => {
     return podio.request('POST', `/item/app/${appId}/filter`, {
       filters: {
@@ -55,10 +77,22 @@ export default function taskOps(podio, { appId, appField }) {
     return podio.request('POST', `/item/app/${appId}/delete`, { item_ids: taskIdList });
   };
 
+  const checkItemHasAcceptedType = item => {
+    console.log('will check item', item);
+    return new Promise((resolve, reject) => _getAcceptedAppList().then(appIdList => {
+      if (appIdList.indexOf(item.app.app_id) > -1) {
+        resolve(item);
+      } else {
+        reject(item);
+      }
+    }, err => reject(item, err)));
+  };
+
   return {
     create,
     remove,
     removeList,
-    filterList
+    filterList,
+    checkItemHasAcceptedType,
   };
 }

@@ -9,6 +9,7 @@ import GanttChart from './gantt-chart';
 import FormSticky from './form-sticky';
 import Sidebar from './sidebar';
 import MenuTop from './menu-top';
+import PanelTask from './panel-task';
 
 const Mapofa = () => (
     <div className="main-wrapper">
@@ -24,7 +25,8 @@ const Mapofa = () => (
           <div className="row">
             <div className="flex-wrapper-horiz">
               <div className="horiz-static col-md-8"><GanttChart /></div>
-              <div className="horiz-static col-md-4">My Tasks
+              <div className="horiz-static col-md-4">
+                <PanelTask />
                 <FormSticky />
               </div>
             </div>

@@ -3,35 +3,20 @@
 
 .mapofa-wrapper {
   height: ~"calc(100vh - 50px)";
+  & > .row {
+    height: 100%;
+  }
 }
 
-.top-btn-add{
+.top-btn-add {
   color: #fff !important;
   background-color: @yellow;
-  &:hover, &:focus{
+  &:hover, &:focus {
     background-color: lighten(@yellow, 5%) !important;
   }
 }
 
-.gantt-chart-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.gantt-chart-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.gantt_task_cell.week_end{
-  background-color: @gray;
-}
-.gantt_task_row.gantt_selected .gantt_task_cell.week_end{
-  background-color: #F8EC9C;
-}
-
+@import 'gantt';
 
 .form-sticky {
   display: none;

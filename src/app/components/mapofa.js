@@ -21,10 +21,12 @@ const Mapofa = () => (
       <Sidebar />
       <div className="content-wrapper">
         <div className="mapofa-wrapper">
-          <div className="flex-wrapper-horiz">
-            <div className="horiz-static col-md-8"><GanttChart /></div>
-            <div className="horiz-static col-md-4">My Tasks
-              <FormSticky />
+          <div className="row">
+            <div className="flex-wrapper-horiz">
+              <div className="horiz-static col-md-8"><GanttChart /></div>
+              <div className="horiz-static col-md-4">My Tasks
+                <FormSticky />
+              </div>
             </div>
           </div>
         </div>

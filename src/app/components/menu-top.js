@@ -13,6 +13,14 @@ class MenuTop extends Component {
     const { onAdd } = this.props;
     return (
         <div className="top-controls">
+          <div className="collapse navbar-collapse pull-left" id="navbar-collapse">
+            <ul className="nav navbar-nav">
+              <li><a href="#">Prev. week</a></li>
+              <li className="active"><a href="#">This week<span className="sr-only">(current)</span></a></li>
+              <li><a href="#">Next week</a></li>
+              <li><a href="#">In Month</a></li>
+            </ul>
+          </div>
           <div className="navbar-custom-menu">
             <ul className="nav navbar-nav">
               <li>

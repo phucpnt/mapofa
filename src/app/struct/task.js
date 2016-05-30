@@ -19,6 +19,8 @@ const Task = t.struct({
   }),
   startDate: t.maybe(t.Date),
   estHours: t.maybe(t.Integer),
+  actualHours: t.maybe(t.Integer),
+  remainHours: t.maybe(t.Integer),
   // estEndDate: 122343564,
   assignee: t.maybe(t.list(contact)),
   belongsToPhase: t.maybe(t.Array),

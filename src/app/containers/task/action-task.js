@@ -3,7 +3,10 @@
  */
 
 import getRepo from '../../../browser/extension/connect/podio/repo-podio';
-import { TASK_LIST_REQUEST, TASK_LIST_RECEIVE } from '../../constants/action-type';
+import {
+    TASK_LIST_REQUEST, TASK_LIST_RECEIVE,
+    PANEL_TASK_REQUEST, PANEL_TASK_RECEIVE,
+} from '../../constants/action-type';
 
 export function filterList({ timeFrame }) {
 
@@ -16,4 +19,15 @@ export function filterList({ timeFrame }) {
         });
   };
 
+}
+
+export function filterPanel({ status, assignee }) {
+  return (dispatch, getState) => {
+    dispatch({ type: PANEL_TASK_REQUEST });
+    return getRepo({})
+        .then(api => api.task.filterList({ status, assignee }))
+        .then(data => {
+          dispatch({ type: PANEL_TASK_RECEIVE, payload: { items: data } });
+        });
+  };
 }

@@ -24,6 +24,10 @@ function translateTimeFrame(timeFrame) {
   }
 }
 
+function translateStatus(statusList) {
+  return [2];
+}
+
 export default function taskOps(podio, { appId, appField }) {
 
   console.log(appId, appField);
@@ -50,11 +54,21 @@ export default function taskOps(podio, { appId, appField }) {
     });
   }
 
-  const filterList = ({ timeFrame }) => {
+  function _makeFilter({ timeFrame, status }) {
+    let filters = {};
+    if (timeFrame) {
+      filters[appField.startDate] = translateTimeFrame(timeFrame);
+    }
+    if (status) {
+      filters[appField.status] = translateStatus(status);
+    }
+
+    return filters;
+  }
+
+  const filterList = (filters) => {
     return podio.request('POST', `/item/app/${appId}/filter`, {
-      filters: {
-        [appField.startDate]: translateTimeFrame(timeFrame),
-      }
+      filters: _makeFilter(filters)
     })
         .then(data => data.items.map(item => formalizeItemObj(item, appField)))
         ;

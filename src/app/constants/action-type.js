@@ -46,3 +46,9 @@ export const PRODUCT_RECEIVE = 'product/receive';
  */
 export const CONTACT_REQUEST = 'contact/request';
 export const CONTACT_RECEIVE = 'contact/receive';
+
+/**
+ * panel task
+ */
+export const PANEL_TASK_REQUEST = 'panel_task/request';
+export const PANEL_TASK_RECEIVE = 'panel_task/receive';

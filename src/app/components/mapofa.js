@@ -14,7 +14,7 @@ import PanelTask from './panel-task';
 const Mapofa = () => (
     <div className="main-wrapper">
       <header className="main-header">
-        <div className="logo">Mpf</div>
+        <div className="logo"></div>
         <nav className="navbar navbar-static-top" role="navigation">
           <MenuTop />
         </nav>

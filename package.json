@@ -90,6 +90,7 @@
   },
   "dependencies": {
     "chrome-storage-local": "^0.1.5",
+    "classnames": "^2.2.5",
     "crossmessaging": "^0.2.0",
     "moment": "^2.13.0",
     "podio-js": "^1.4.2",

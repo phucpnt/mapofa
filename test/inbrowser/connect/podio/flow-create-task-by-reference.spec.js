@@ -14,7 +14,7 @@ const workspaceId = 4555999;
 
 
 connectPodio(podio => {
-  describe.only('Process ', () => {
+  describe('Process', () => {
     const api = notifOps(podio);
     const apiContact = contactOps(podio, { workspaceId });
     let refItems = [];

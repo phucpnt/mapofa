@@ -15,6 +15,7 @@ const Task = t.struct({
   status: t.enums({
     notStarted: 'Not Started',
     inProgress: 'In Progress',
+    hold: 'Hold',
     done: 'Done',
   }),
   startDate: t.maybe(t.Date),
@@ -22,6 +23,7 @@ const Task = t.struct({
   actualHours: t.maybe(t.Integer),
   remainHours: t.maybe(t.Integer),
   // estEndDate: 122343564,
+  relatedTo: t.maybe(t.Array),
   assignee: t.maybe(t.list(contact)),
   belongsToPhase: t.maybe(t.Array),
   description: t.maybe(t.String),

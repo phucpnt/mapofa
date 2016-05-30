@@ -52,3 +52,4 @@ export const CONTACT_RECEIVE = 'contact/receive';
  */
 export const PANEL_TASK_REQUEST = 'panel_task/request';
 export const PANEL_TASK_RECEIVE = 'panel_task/receive';
+export const PANEL_TAB_ACTIVE = 'panel_task/tab_active';

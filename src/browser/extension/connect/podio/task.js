@@ -6,6 +6,10 @@ import moment from 'moment';
 import _ from 'lodash';
 import * as TF from '../../../../app/constants/timeframe';
 import formalizeItemObj from './helper/formalize-obj-item';
+import {
+    TASK_TYPE_BACKLOG, TASK_TYPE_BUG, TASK_TYPE_FEATURE, TASK_TYPE_NOTSET,
+    TASK_STATUS_DONE, TASK_STATUS_HOLD, TASK_STATUS_NOTSTART, TASK_STATUS_WIP
+} from '../../../../app/constants/app';
 
 function translateTimeFrame(timeFrame) {
   switch (timeFrame) {
@@ -24,14 +28,29 @@ function translateTimeFrame(timeFrame) {
   }
 }
 
-function translateStatus(statusList) {
-  return [2];
+function translateStatus(statusList, podioStatusOptions = {
+  [TASK_STATUS_HOLD]: 4,
+  [TASK_STATUS_NOTSTART]: 1,
+  [TASK_STATUS_WIP]: 2,
+  [TASK_STATUS_DONE]: 3,
+}) {
+  return statusList.map(item => podioStatusOptions[item]);
+}
+
+function translateCategory(catList, podioCatList = {
+  [TASK_TYPE_NOTSET]: null,
+  [TASK_TYPE_BACKLOG]: 1,
+  [TASK_TYPE_FEATURE]: 2,
+  [TASK_TYPE_BUG]: 3
+}) {
+  return catList.map(item => podioCatList[item]);
 }
 
 export default function taskOps(podio, { appId, appField }) {
 
   console.log(appId, appField);
-
+  const _appId = appId;
+  const _appField = appField;
   let appList = [];
 
   function _getAcceptedAppList() {
@@ -54,13 +73,16 @@ export default function taskOps(podio, { appId, appField }) {
     });
   }
 
-  function _makeFilter({ timeFrame, status }) {
+  function _makeFilter({ timeFrame, status, category }) {
     let filters = {};
     if (timeFrame) {
       filters[appField.startDate] = translateTimeFrame(timeFrame);
     }
     if (status) {
       filters[appField.status] = translateStatus(status);
+    }
+    if (category) {
+      filters[appField.category] = translateCategory(category);
     }
 
     return filters;
@@ -102,11 +124,16 @@ export default function taskOps(podio, { appId, appField }) {
     }, err => reject(item, err)));
   };
 
+  const getAppSetup = () => {
+    return podio.request('GET', `/app/${_appId}`);
+  };
+
   return {
     create,
     remove,
     removeList,
     filterList,
+    getAppSetup,
     checkItemHasAcceptedType,
   };
 }

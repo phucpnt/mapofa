@@ -37,6 +37,17 @@ connectPodio((podio) => {
 
   const task = taskOps(podio, { appId, appField });
 
+  describe.only('Task App Podio', () => {
+    const taskApi = taskOps(podio, { appId: 15818250, appField });
+    it('it support getting app setup', done => {
+      taskApi.getAppSetup().then(response => {
+        console.log(response);
+        done();
+      });
+    });
+  });
+
+
   describe('Task on Podio', () => {
     let fakeCreatedTaskList = [];
     const originCreate = task.create;

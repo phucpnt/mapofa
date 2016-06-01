@@ -10,6 +10,7 @@ import FormSticky from './form-sticky';
 import Sidebar from './sidebar';
 import MenuTop from './menu-top';
 import PanelTask from './panel-task';
+import IframeFull from './iframe-full';
 
 const Mapofa = () => (
     <div className="main-wrapper">
@@ -33,6 +34,7 @@ const Mapofa = () => (
           </div>
         </div>
       </div>
+      <IframeFull />
     </div>
 );
 

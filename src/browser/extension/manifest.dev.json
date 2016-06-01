@@ -19,7 +19,9 @@
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8HHp1hLFCZ5CvEucc9ZcIRVHF4BnQC/7TWmpFBdMQcwNlC7tVaK2XBeXSS03LUjomFskp465QB9WE/uVsQ5h5tDkw7axyeSqEnLPKYfKOW2gyOE0mMApEbeoFcTFHcrXDk+tMFOFpUz3hcdI20GofWWnI4UqKb/VgHpQy/Sb/y3EMP2GL/qsyDlmCCyYK72MlbyvJzj/ubc9KBLLVs//BRg6ul/r3B/K7SApFSzYkRwX2V2iXRv/5kN/16cR5b7xjvEeKikfUlo79+HUrfIT3LQXbSW3J10etewfRIOsCDWl2PDjySVoc1P5yveDEuA5FBvsDpZrPTymlPtXzOIOywIDAQAB",
   "permissions": [ "contextMenus", "tabs", "storage",
     "identity",
-    "http://*/", "https://*/"
+    "http://*/", "https://*/",
+    "webRequest",
+    "webRequestBlocking"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 'unsafe-eval' 'unsafe-inline'; connect-src http://localhost:3000 ws://localhost:3000 ws://localhost:35729 http://*/ https://*/; style-src 'self' data: chrome-extension-resource: blob: 'unsafe-inline'; img-src 'self' data: http://*/ https://*/;"
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 'unsafe-eval' 'unsafe-inline'; connect-src http://localhost:3000 ws://localhost:3000 ws://localhost:35729 http://*/ https://*/; style-src 'self' data: chrome-extension-resource: blob: 'unsafe-inline'; img-src 'self' data: http://*/ https://*/; frame-src 'self' http://*/ https://*/;"
 }

@@ -37,3 +37,29 @@
   border-top: 0;
   border-bottom: 0;
 }
+
+.iframe-full{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  z-index: 1000;
+  .app-panel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: @yellow;
+  }
+  .closeit{
+    cursor: pointer;
+    height: 50px;
+    font-size: 2em;
+    color: #fff;
+  }
+  iframe{
+    height: 100%;
+    width: 100%;
+  }
+}

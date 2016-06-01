@@ -3,9 +3,12 @@
  */
 
 import update from 'react-addons-update';
-import { CONTACT_REQUEST, CONTACT_RECEIVE } from '../../constants/action-type';
+import {
+    CONTACT_REQUEST,
+    CONTACT_RECEIVE,
+} from '../../constants/action-type';
 
-export default function (state = { items: [], isLoading: 1 }, action) {
+export default function (state = { items: [], isLoading: 1, myAccount: null }, action) {
   switch (action.type) {
     case CONTACT_REQUEST:
       return update(state, { isLoading: { $set: 1 } });

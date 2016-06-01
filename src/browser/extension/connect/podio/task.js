@@ -73,7 +73,7 @@ export default function taskOps(podio, { appId, appField }) {
     });
   }
 
-  function _makeFilter({ timeFrame, status, category }) {
+  function _makeFilter({ timeFrame, status, category, assignee }) {
     let filters = {};
     if (timeFrame) {
       filters[appField.startDate] = translateTimeFrame(timeFrame);
@@ -83,6 +83,9 @@ export default function taskOps(podio, { appId, appField }) {
     }
     if (category) {
       filters[appField.category] = translateCategory(category);
+    }
+    if (assignee) {
+      filters[appField.assignee] = assignee;
     }
 
     return filters;

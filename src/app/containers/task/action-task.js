@@ -24,8 +24,13 @@ export function filterList({ timeFrame }) {
 export function filterPanel({ status, category, assignee }) {
   return (dispatch, getState) => {
     dispatch({ type: PANEL_TASK_REQUEST });
+
+    let _assignee;
+    if (assignee) {
+      _assignee = assignee.map(item => (item === 'me' ? getState().app.myAccount.data.id : item));
+    }
     return getRepo({})
-        .then(api => api.task.filterList({ status, assignee, category }))
+        .then(api => api.task.filterList({ status, assignee: _assignee, category }))
         .then(data => {
           dispatch({ type: PANEL_TASK_RECEIVE, payload: { items: data } });
         });

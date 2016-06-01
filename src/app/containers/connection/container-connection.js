@@ -37,7 +37,8 @@ const mapStateToProps = (state) => {
 const mapDispatchTopProps = (dispatch, state, ownProps) => {
   return {
     loadMemberList() {
-      return dispatch(ActionContact.getAll());
+      dispatch(ActionContact.getAll());
+      dispatch(ActionContact.getMyAccount());
     },
   };
 };

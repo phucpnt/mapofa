@@ -56,7 +56,7 @@ const connectDispatchToProps = (dispatch, ownProps) => {
           dispatch(filterPanel({ status: [TASK_STATUS_WIP] }));
           break;
         case PTT_BACKLOG:
-          dispatch(filterPanel({ category: [TASK_TYPE_NOTSET, TASK_TYPE_BACKLOG] }));
+          dispatch(filterPanel({ category: [TASK_TYPE_BACKLOG] }));
           break;
       }
     }

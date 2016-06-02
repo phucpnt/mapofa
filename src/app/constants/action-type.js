@@ -55,3 +55,10 @@ export const CONTACT_MYACCOUNT_RECEIVE = 'contact/my_account/receive';
 export const PANEL_TASK_REQUEST = 'panel_task/request';
 export const PANEL_TASK_RECEIVE = 'panel_task/receive';
 export const PANEL_TAB_ACTIVE = 'panel_task/tab_active';
+
+/**
+ * iframe full
+ */
+export const IFRAME_FULL_SHOW = 'iframe_full/show';
+export const IFRAME_FULL_HIDE = 'iframe_full/hide';
+

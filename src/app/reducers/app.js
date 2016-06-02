@@ -6,6 +6,7 @@ import task from '../containers/task/reducer-task';
 import panelTask from '../containers/task/reducer-panel-task';
 import contact from '../containers/contact/reducer-contact';
 import myAccount from '../containers/contact/reducer-my-account';
+import iframefull from '../containers/iframe-3rd-party/reducer-iframe-full';
 
 
 export default combineReducers({
@@ -13,4 +14,5 @@ export default combineReducers({
   contact,
   panelTask,
   myAccount,
+  iframefull,
 });

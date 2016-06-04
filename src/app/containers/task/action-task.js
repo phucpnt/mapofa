@@ -27,8 +27,9 @@ export function filterPanel({ status, category, assignee }) {
 
     let _assignee;
     if (assignee) {
-      _assignee = assignee.map(item => (item === 'me' ? getState().app.myAccount.data.id : item));
+      _assignee = assignee.map(item => (item === 'me' ? getState().app.myAccount.data.profileId : item));
     }
+
     return getRepo({})
         .then(api => api.task.filterList({ status, assignee: _assignee, category }))
         .then(data => {

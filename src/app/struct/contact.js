@@ -9,6 +9,7 @@ const Contact = t.struct({
   avatar: t.maybe(t.String),
   avatarThumbnail: t.maybe(t.String),
   name: t.String,
+  profileId: t.Number
 });
 
 export default Contact;

@@ -37,7 +37,7 @@ connectPodio((podio) => {
 
   const task = taskOps(podio, { appId, appField });
 
-  describe.only('Task App Podio', () => {
+  describe('Task App Podio', () => {
     const taskApi = taskOps(podio, { appId: 15818250, appField });
     it('it support getting app setup', done => {
       taskApi.getAppSetup().then(response => {

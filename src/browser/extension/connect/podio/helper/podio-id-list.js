@@ -22,10 +22,11 @@ export const DevTaskField = {
 
 export const ContactField = {
   id: 'profile.user_id',
+  profileId: 'profile.profile_id',
   name: 'profile.name',
   link: 'profile.link',
   avatar: 'profile.image.link',
   avatarThumbnail: 'profile.image.thumbnail_link',
   type: 'profile.type',
-  role: 'role'
+  role: 'role',
 };

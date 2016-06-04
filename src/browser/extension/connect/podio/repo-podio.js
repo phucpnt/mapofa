@@ -2,6 +2,7 @@ import { isConnected } from './connect-podio';
 import taskOps from './task';
 import contactOps from './contact';
 import { DevTaskField } from './helper/podio-id-list';
+import createPushServicePodio from './create-push-service';
 
 export default function getApi({
     workspaceId = 4555999,
@@ -11,13 +12,21 @@ export default function getApi({
     taskAppId=15818250,
 }) {
 
+  const updateCallbacks = [];
+
   const api = podio => ({
     task: taskOps(podio, { appId: taskAppId, appField: DevTaskField }),
-    contact: contactOps(podio, { workspaceId })
+    contact: contactOps(podio, { workspaceId }),
+    addListenerForUpdates(callback) {
+      updateCallbacks.push(callback);
+    }
   });
 
+  const createPushService = podio => {
+    return podio;
+  };
 
-  return isConnected().then(api).catch(err => {
+  return isConnected().then(createPushService).then(api).catch(err => {
     throw err;
   });
 }

@@ -23,5 +23,5 @@
     "webRequest",
     "webRequestBlocking"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 'unsafe-eval' 'unsafe-inline'; connect-src http://localhost:3000 ws://localhost:3000 ws://localhost:35729 http://*/ https://*/; style-src 'self' data: chrome-extension-resource: blob: 'unsafe-inline'; img-src 'self' data: http://*/ https://*/; frame-src 'self' http://*/ https://*/;"
+  "content_security_policy": "default-src 'self'; script-src 'self' https://*.podio.com/ http://localhost:3000 'unsafe-eval' 'unsafe-inline'; connect-src http://localhost:3000 ws://localhost:3000 ws://localhost:35729 http://*/ https://*/ wss://*/; style-src 'self' data: chrome-extension-resource: blob: 'unsafe-inline'; img-src 'self' data: http://*/ https://*/; frame-src 'self' http://*/ https://*/;"
 }

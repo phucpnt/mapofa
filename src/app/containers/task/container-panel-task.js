@@ -4,12 +4,15 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { filterPanel, markTabActive } from './action-task';
 import {
     PTT_BACKLOG, PTT_MYTASK, PTT_NOTDONE,
     TASK_STATUS_DONE, TASK_STATUS_HOLD, TASK_STATUS_NOTSTART, TASK_STATUS_WIP,
     TASK_TYPE_BACKLOG, TASK_TYPE_BUG, TASK_TYPE_FEATURE, TASK_TYPE_NOTSET
 } from '../../constants/app';
+
+import makeRefreshable from '../connection/container-refreshable';
 
 function makeContainerPanelTask(ComPanel) {
 
@@ -63,4 +66,9 @@ const connectDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default ComPanel => connect(connectStateToProps, connectDispatchToProps)(makeContainerPanelTask(ComPanel));
+export default ComPanel => compose(
+    makeRefreshable(['loadAll']),
+    connect(connectStateToProps, connectDispatchToProps),
+    makeContainerPanelTask
+)(ComPanel);
+

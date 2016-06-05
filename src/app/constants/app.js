@@ -2,6 +2,7 @@
  * Created by phucpnt on 5/29/16.
  */
 
+export const WORKSPACEID = 4555999;
 
 /**
  * panel task tab
@@ -25,3 +26,4 @@ export const TASK_STATUS_DONE = 'done';
 export const TASK_STATUS_HOLD = 'hold';
 export const TASK_STATUS_NOTSTART = 'not-start';
 export const TASK_STATUS_WIP = 'wip';
+

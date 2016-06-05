@@ -4,6 +4,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import * as ActionForm from './form/action-form';
+import * as ActionIframe from '../containers/iframe-3rd-party/action-iframe-full';
 import { connect } from 'react-redux';
 
 
@@ -11,16 +12,18 @@ function makeWrapCom(Com) {
 
   class WrappedGlobalFunCom extends Component {
 
-    constructor(props){
+    constructor(props) {
       super(props);
       this.onPopupIframe = this.onPopupIframe.bind(this);
     }
-    onPopupIframe(url){
+
+    onPopupIframe(url) {
       const iframe = document.getElementById('full-iframe');
       iframe.src = url;
     }
+
     render() {
-      const { onAdd } = this.props.onAdd;
+      const { onAdd } = this.props;
       return (
           <Com onAdd={onAdd}/>
       );
@@ -34,10 +37,12 @@ function makeWrapCom(Com) {
   return WrappedGlobalFunCom;
 }
 
+const podioAddNewTaskUrl = 'https://podio.com/sentificom/frontend-ng/apps/devtask/items/new';
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onAdd() {
-      return dispatch(ActionForm.showAddForm());
+      dispatch(ActionIframe.show(podioAddNewTaskUrl));
     },
   };
 };

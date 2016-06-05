@@ -5,8 +5,6 @@
 import faye from 'faye';
 
 export default function createPushService(podio, { workspaceId, messageHandle }) {
-
-
   return podio.request('GET', `/space/${workspaceId}`).then(response => {
     return new Promise((resolve, reject) => {
       // Initialize faye client

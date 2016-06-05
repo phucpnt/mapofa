@@ -3,8 +3,12 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actionGantt from './action-gantt';
+
+import makeRefreshableOn from '../connect/container-refreshable';
+import makeRefreshableOnUpdate from '../connect/container-refresh-on-update';
 
 function containerGantt(ComGantt) {
 
@@ -56,8 +60,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 });
 
+export default ComGantUI => compose(
+    containerGantt,
+    connect(mapStateToProps, mapDispatchToProps),
+    makeRefreshableOn(['load']),
+    makeRefreshableOnUpdate,
+)(ComGantUI);
 
-export default function makeGantt(ComGantt) {
-  return connect(mapStateToProps, mapDispatchToProps)(containerGantt(ComGantt));
-}
 

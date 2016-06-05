@@ -10,12 +10,6 @@ export default function makeRefreshableComponent(replayMethods = []) {
 
       constructor(props) {
         super(props);
-        this.props = Object.assign({}, props,
-            replayMethods.reduce((propsMethod, curMethod) => {
-              propsMethod[curMethod] = this._rememberLastRunMethod(props[curMethod]);
-              return propsMethod;
-            }, {})
-        );
         this._lastRunMethod = null;
         this.refresh = this.refresh.bind(this);
       }
@@ -31,18 +25,22 @@ export default function makeRefreshableComponent(replayMethods = []) {
         this._lastRunMethod();
       }
 
-
       render() {
-        return (<Com {...this.props} refresh={this.refresh}/>);
+        let props = {};
+        replayMethods.forEach(propMethod => {
+          props[propMethod] = this._rememberLastRunMethod(this.props[propMethod]);
+        });
+        return (<Com {...this.props} {...props} refresh={this.refresh}/>);
       }
 
     }
 
     RefreshableComponent.propTypes = replayMethods.reduce((finalPropTypes, curMethod) => {
-      finalPropTypes[curMethod] = PropTypes.func;
+      finalPropTypes[curMethod] = PropTypes.func.isRequired;
       return finalPropTypes;
     }, {});
 
     return RefreshableComponent;
   };
 }
+

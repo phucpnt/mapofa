@@ -17,16 +17,12 @@ export default function getApi({
   const api = podio => ({
     task: taskOps(podio, { appId: taskAppId, appField: DevTaskField }),
     contact: contactOps(podio, { workspaceId }),
-    addListenerForUpdates(callback) {
-      updateCallbacks.push(callback);
+    registerUpdateHandler(messageHandle) {
+      createPushServicePodio(podio, { workspaceId, messageHandle });
     }
   });
 
-  const createPushService = podio => {
-    return podio;
-  };
-
-  return isConnected().then(createPushService).then(api).catch(err => {
+  return isConnected().then(api).catch(err => {
     throw err;
   });
 }

@@ -30,3 +30,4 @@ export const ContactField = {
   type: 'profile.type',
   role: 'role',
 };
+

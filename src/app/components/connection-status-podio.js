@@ -3,11 +3,11 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import makeContainerConnection from '../containers/connection/container-connection';
+import makeContainerConnection from '../containers/connect/container-connect';
 
 export default function ConnectionStatusPodio() {
   return (
-      <div>Podio Status</div>
+      <div>&nbsp;</div>
   );
 }
 

@@ -15,8 +15,14 @@ function translateTimeFrame(timeFrame) {
   switch (timeFrame) {
     case TF.WEEK:
       return {
-        from: moment().startOf('week'),
-        to: moment().endOf('week')
+        startDate: {
+          from: null,
+          to: moment().endOf('week').format('YYYY-MM-DD')
+        },
+        calEstEndDate: {
+          from: moment().startOf('week').format('YYYY-MM-DD'),
+          to: null
+        },
       };
     case TF.NEXT_WEEK:
       return {
@@ -76,7 +82,7 @@ export default function taskOps(podio, { appId, appField }) {
   function _makeFilter({ timeFrame, status, category, assignee }) {
     let filters = {};
     if (timeFrame) {
-      filters[appField.startDate] = translateTimeFrame(timeFrame);
+      filters = Object.assign({}, filters, _.mapKeys(translateTimeFrame(timeFrame), (val, key) => appField[key]));
     }
     if (status) {
       filters[appField.status] = translateStatus(status);

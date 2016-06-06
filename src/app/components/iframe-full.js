@@ -37,7 +37,7 @@ class IframeFull extends Component {
         <div className={className}>
           <div className="app-panel">
             <div className="text-center closeit" onClick={hide}>
-              <i className="fa fa-close"/> Close &amp; Return App&nbsp;
+              <i className="fa fa-arrow-left"/> Close &amp; Return App&nbsp;
               {
                 this.state.isLoading ? (<i className="fa fa-refresh fa-spin" />) : ''
               }

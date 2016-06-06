@@ -13,7 +13,7 @@ class PanelTask extends Component {
   static getTabList() {
     return [
       { id: PTT_MYTASK, label: 'My Task' },
-      { id: PTT_NOTDONE, label: 'Not Done' },
+      { id: PTT_NOTDONE, label: 'Team WIP' },
       { id: PTT_BACKLOG, label: 'Backlog' },
     ];
   }

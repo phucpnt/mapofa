@@ -3,8 +3,12 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
+
 import { PTT_BACKLOG, PTT_MYTASK, PTT_NOTDONE } from '../constants/app';
-import TaskItem from './task/task-item';
+
+import TaskGroup from './task/task-group';
+
 import makePanelTask from '../containers/task/container-panel-task';
 import classnames from 'classnames';
 
@@ -18,6 +22,36 @@ class PanelTask extends Component {
     ];
   }
 
+  static getTaskGroup() {
+    const currentDate = new Date();
+    return [
+      {
+        label: 'Overdue',
+        className: 'overdue',
+        filter: taskList => taskList.filter(task => moment(task.calEstEndDate).isBefore(currentDate, 'day'))
+      },
+      {
+        label: 'Today',
+        className: 'today',
+        filter: taskList => taskList.filter(task => moment(task.calEstEndDate).isSame(currentDate, 'day'))
+      },
+      {
+        label: 'Current Week',
+        className: 'current-week',
+        filter: taskList => taskList.filter(
+            task => moment(task.calEstEndDate).isBetween(currentDate, moment().endOf('week'))
+        )
+      },
+      {
+        label: 'UpComing',
+        className: 'upcoming',
+        filter: taskList => taskList.filter(
+            task => moment(task.calEstEndDate).isAfter(moment().endOf('week'))
+        )
+      }
+    ];
+  }
+
   constructor(props) {
     super(props);
     this.loadAll = tabView => this.props.loadAll(tabView);
@@ -26,6 +60,7 @@ class PanelTask extends Component {
   render() {
     const tabList = PanelTask.getTabList();
     const { tabActive, itemList } = this.props;
+    console.log(itemList);
     const loadAll = this.loadAll;
     return (
         <div className="js-task-panel task-panel">
@@ -43,8 +78,14 @@ class PanelTask extends Component {
                 })
               }
             </ul>
-            <div className="task-item-list">
-              {itemList.map(item => <TaskItem key={item.id} {...item} />)}
+            <div className="task-group">
+              {PanelTask.getTaskGroup().map(group => {
+                const groupItemList = group.filter(itemList);
+                if (groupItemList.length) {
+                  return (<TaskGroup label={group.label} className={group.className} itemList={groupItemList}/>);
+                }
+                return '';
+              })}
             </div>
           </div>
         </div>

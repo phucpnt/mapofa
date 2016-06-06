@@ -18,7 +18,16 @@ function getFieldValue(poField) {
       val = poField.values[0].value / (60 * 60);
       break;
     case 'contact':
-      val = poField.values.map(podioContact => mapToContact({profile: podioContact.value}));
+      val = poField.values.map(podioContact => mapToContact({ profile: podioContact.value }));
+      break;
+    case 'calculation':
+      switch (poField.config.settings.return_type) {
+        case 'date':
+          val = moment.utc(poField.values[0].start_utc).toDate();
+          break;
+        default:
+          val = poField.values[0].value;
+      }
       break;
     default:
       val = poField.values[0].value;

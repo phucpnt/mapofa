@@ -11,8 +11,39 @@
 
   .control-sidebar-light {
     border-left: none;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
   }
-  .task-item-list{
+  .task-group{
+    flex: 1;
+    overflow-y:scroll;
+    h4{
+      padding-left: .5em;
+    }
+    .overdue{
+      & h4{
+        color: @red;
+      }
+      border-left: 2px solid @red;
+    }
+    .today{
+      & h4{
+        color: @yellow;
+      }
+      border-left: 2px solid @yellow;
+    }
+    .current-week{
+      & h4{
+        color: @blue;
+      }
+    }
+    .upcoming{
+    }
+
+    .task-group-container{
+      margin-bottom: 1em;
+    }
   }
   .task-item{
     cursor: pointer;

@@ -12,7 +12,7 @@ class TaskItem extends Component {
   }
 
   render() {
-    const { id, subject, showFullDetail, link } = this.props;
+    const { id, subject, showFullDetail, link, assignee } = this.props;
     return (
         <div className="js-task-item task-item" taskId={id} onClick={this._showFullDetail({ link })}>
           <div className="media">
@@ -21,6 +21,13 @@ class TaskItem extends Component {
             </div>
             <div className="media-body">
               {subject}
+              <div className="assignee">
+                {assignee.map(person => {
+                  return (<img key={person.id} className="avatar img-circle" 
+                               title={person.name}
+                               src={person.avatarThumbnail}/>);
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -34,6 +41,7 @@ TaskItem.propTypes = {
   subject: PropTypes.string,
   link: PropTypes.string,
   showFullDetail: PropTypes.func,
+  assignee: PropTypes.array,
 };
 
 export default makeContainerTask(TaskItem);

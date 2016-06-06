@@ -5,7 +5,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import getRepo from '../../../browser/extension/connect/podio/repo-podio';
-import createPushService from '../../../browser/extension/connect/podio/create-push-service';
 import { WORKSPACEID } from '../../constants/app';
 import * as ActionConnect from './action-connect';
 

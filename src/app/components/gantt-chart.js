@@ -5,6 +5,7 @@
 import React, { Component, PropTypes } from 'react';
 import makeGantt from '../containers/gantt/container-gantt';
 import gantt from 'dhtmlxgantt';
+import moment from 'moment';
 
 /**
  * using [dhtmlx gantt](http://docs.dhtmlx.com/gantt/desktop__guides.html)
@@ -19,7 +20,7 @@ class GanttChart extends Component {
         const ganttTask = {
           id: task.id,
           text: task.subject,
-          start_date: task.startDate,
+          start_date: moment(task.startDate).startOf('day').toDate(),
           duration: Math.floor(task.estHours / 24) + (Math.ceil(2 * (task.estHours % 24) / 8) / 2),
           assignee: task.assignee,
           description: task.description

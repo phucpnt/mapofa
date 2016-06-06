@@ -13,10 +13,19 @@
     border-left: none;
   }
   .task-item-list{
-    padding: 1em;
   }
   .task-item{
     cursor: pointer;
-    padding: .3em 0;
+    padding: .5em 1em;
+    border-bottom: 1px solid @box-default-border-top-color;
+    &:hover{
+      background: @box-default-border-top-color;
+    }
+  }
+  .avatar{
+    height: 32px;
+    width: 32px;
+    margin-right: 3px;
+    object-fit: cover;
   }
 }

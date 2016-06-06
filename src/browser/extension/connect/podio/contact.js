@@ -5,6 +5,10 @@
 import _ from 'lodash';
 import { ContactField } from './helper/podio-id-list';
 
+export function mapToContact(podioContact) {
+  return _.mapValues(ContactField, poField => _.get(podioContact, poField));
+}
+
 export default function personOps(podio, { workspaceId }) {
 
   let _myAccount = null;

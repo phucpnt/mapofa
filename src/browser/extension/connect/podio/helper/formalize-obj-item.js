@@ -3,6 +3,7 @@
  */
 import moment from 'moment';
 import toMarkdown from 'to-markdown';
+import { mapToContact } from '../contact';
 
 function getFieldValue(poField) {
   let val = null;
@@ -15,6 +16,9 @@ function getFieldValue(poField) {
       break;
     case 'duration':
       val = poField.values[0].value / (60 * 60);
+      break;
+    case 'contact':
+      val = poField.values.map(podioContact => mapToContact({profile: podioContact.value}));
       break;
     default:
       val = poField.values[0].value;

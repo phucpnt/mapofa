@@ -8,6 +8,7 @@ import moment from 'moment';
 import { PTT_BACKLOG, PTT_MYTASK, PTT_NOTDONE } from '../constants/app';
 
 import TaskGroup from './task/task-group';
+import TaskItem from './task/task-item';
 
 import makePanelTask from '../containers/task/container-panel-task';
 import classnames from 'classnames';
@@ -57,6 +58,24 @@ class PanelTask extends Component {
     this.loadAll = tabView => this.props.loadAll(tabView);
   }
 
+  renderTaskGroup(tabId, taskGroup, itemList) {
+
+    if (PTT_BACKLOG === tabId) {
+      return itemList.map(item => (<TaskItem key={item.id} {...item} />));
+    }
+
+    return taskGroup.map(group => {
+      const groupItemList = group.filter(itemList);
+      if (groupItemList.length) {
+        return (
+            <TaskGroup key={group.label} label={group.label} className={group.className}
+                       itemList={groupItemList}/>
+        );
+      }
+      return '';
+    });
+  }
+
   render() {
     const tabList = PanelTask.getTabList();
     const { tabActive, itemList } = this.props;
@@ -79,13 +98,7 @@ class PanelTask extends Component {
               }
             </ul>
             <div className="task-group">
-              {PanelTask.getTaskGroup().map(group => {
-                const groupItemList = group.filter(itemList);
-                if (groupItemList.length) {
-                  return (<TaskGroup label={group.label} className={group.className} itemList={groupItemList}/>);
-                }
-                return '';
-              })}
+              { this.renderTaskGroup(tabActive, PanelTask.getTaskGroup(), itemList) }
             </div>
           </div>
         </div>

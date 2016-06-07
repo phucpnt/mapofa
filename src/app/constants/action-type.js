@@ -5,6 +5,12 @@ export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 
 /**
+ * gantt actions
+ */
+export const GANTT_REQUEST = 'gantt/request';
+export const GANTT_RECEIVE = 'gantt/receive';
+
+/**
  * task actions
  */
 export const TASK_LIST_REQUEST = 'task/request';

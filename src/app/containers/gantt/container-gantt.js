@@ -50,7 +50,7 @@ function containerGantt(ComGantt) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    taskList: state.app.task.items
+    taskList: state.app.gantt ? state.app.gantt.items : [],
   };
 };
 

@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react';
 import makeGantt from '../containers/gantt/container-gantt';
 import gantt from 'dhtmlxgantt';
 import moment from 'moment';
+import _ from 'lodash';
 
 /**
  * using [dhtmlx gantt](http://docs.dhtmlx.com/gantt/desktop__guides.html)
@@ -23,9 +24,9 @@ class GanttChart extends Component {
           start_date: moment(task.startDate).startOf('day').toDate(),
           duration: Math.floor(task.estHours / 24) + (Math.ceil(2 * (task.estHours % 24) / 8) / 2),
           assignee: task.assignee,
-          description: task.description
+          description: task.description,
+          status: task.status.text,
         };
-        console.log(ganttTask);
         return ganttTask;
       })
     });
@@ -70,6 +71,10 @@ class GanttChart extends Component {
       { name: 'start_date', label: 'Start time', align: 'center' },
       { name: 'duration', label: 'Duration', align: 'center' }
     ];
+
+    gantt.templates.task_class = (start, end, task) => {
+      return _.kebabCase(task.status);
+    };
   }
 
   componentDidMount() {

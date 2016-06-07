@@ -56,7 +56,6 @@ export default function taskOps(podio, { appId, appField }) {
 
   console.log(appId, appField);
   const _appId = appId;
-  const _appField = appField;
   let appList = [];
 
   function _getAcceptedAppList() {

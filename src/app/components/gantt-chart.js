@@ -7,6 +7,7 @@ import makeGantt from '../containers/gantt/container-gantt';
 import gantt from 'dhtmlxgantt';
 import moment from 'moment';
 import _ from 'lodash';
+import { TASK_STATUS_DONE }from '../constants/app';
 
 /**
  * using [dhtmlx gantt](http://docs.dhtmlx.com/gantt/desktop__guides.html)
@@ -96,10 +97,16 @@ class GanttChart extends Component {
     });
 
     // right side content
-    gantt.templates.rightside_text = function(start, end, task){
+    gantt.templates.rightside_text = function (start, end, task) {
       return task.assignee.map(person => person.name).join(', ');
     };
-    
+
+    // custom icon tree
+    gantt.templates.grid_file = function (item) {
+      console.log(item);
+      const doneIcon = item.status.toLowerCase() == TASK_STATUS_DONE ? '<i class="fa fa-check"></i>' : '';
+      return `<div class='gantt_tree_icon'>${doneIcon}</div>`;
+    };
   }
 
   componentDidMount() {

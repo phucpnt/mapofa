@@ -26,6 +26,7 @@ class GanttChart extends Component {
           assignee: task.assignee,
           description: task.description,
           status: task.status.text,
+          link: task.link,
         };
         return ganttTask;
       })
@@ -45,7 +46,6 @@ class GanttChart extends Component {
     gantt.setWorkTime({ hours: [8, 18] });
 
     gantt.attachEvent('onBeforeLightBox', (id) => {
-      console.log(gantt.getTask(id));
       return false;
     });
 
@@ -67,7 +67,14 @@ class GanttChart extends Component {
 
     gantt.config.drag_process = false;
     gantt.config.columns = [
-      { name: 'text', label: 'Subject', width: '*', tree: true, align: 'left' },
+      {
+        name: 'text',
+        label: 'Subject',
+        width: 250,
+        tree: true,
+        align: 'left',
+        template: (task) => `<div class="task-title">${task.text}</div>`
+      },
       { name: 'start_date', label: 'Start time', align: 'center' },
       { name: 'duration', label: 'Duration', align: 'center' }
     ];
@@ -75,6 +82,24 @@ class GanttChart extends Component {
     gantt.templates.task_class = (start, end, task) => {
       return _.kebabCase(task.status);
     };
+    gantt.attachEvent('onTaskClick', (taskId, evt) => {
+      this.props.showWindow(this.props.taskList.find(task => parseInt(taskId) === task.id).link);
+    });
+
+    // today marker
+    const dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+    gantt.addMarker({
+      start_date: new Date(),
+      css: 'today',
+      text: 'Today',
+      title: 'Today: ' + dateToStr(new Date())
+    });
+
+    // right side content
+    gantt.templates.rightside_text = function(start, end, task){
+      return task.assignee.map(person => person.name).join(', ');
+    };
+    
   }
 
   componentDidMount() {
@@ -96,6 +121,8 @@ class GanttChart extends Component {
 GanttChart.propTypes = {
   taskList: PropTypes.array,
   load: PropTypes.func,
+  timeFrame: PropTypes.string,
+  showWindow: PropTypes.func,
 };
 
 export default makeGantt(GanttChart);

@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actionGantt from './action-gantt';
+import * as actionWindow from '../iframe-3rd-party/action-iframe-full';
 
 import makeRefreshableOn from '../connect/container-refreshable';
 import makeRefreshableOnUpdate from '../connect/container-refresh-on-update';
@@ -57,6 +58,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   load({ timeFrame }) {
     dispatch(actionGantt.load({ timeFrame: timeFrame || ownProps.timeFrame }));
+  },
+  showWindow(url) {
+    dispatch(actionWindow.show(url));
   }
 });
 

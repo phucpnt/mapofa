@@ -8,11 +8,12 @@ import { compose } from 'redux';
 import { filterPanel, markTabActive } from './action-task';
 import {
     PTT_BACKLOG, PTT_MYTASK, PTT_NOTDONE,
-    TASK_STATUS_DONE, TASK_STATUS_HOLD, TASK_STATUS_NOTSTART, TASK_STATUS_WIP,
-    TASK_TYPE_BACKLOG, TASK_TYPE_BUG, TASK_TYPE_FEATURE, TASK_TYPE_NOTSET
+    TASK_STATUS_WIP,
+    TASK_TYPE_BACKLOG,
 } from '../../constants/app';
 
-import makeRefreshable from '../connection/container-refreshable';
+import makeRefreshable from '../connect/container-refreshable';
+import makeRefreshOnUpdate from '../connect/container-refresh-on-update';
 
 function makeContainerPanelTask(ComPanel) {
 
@@ -67,8 +68,9 @@ const connectDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default ComPanel => compose(
-    makeRefreshable(['loadAll']),
     connect(connectStateToProps, connectDispatchToProps),
-    makeContainerPanelTask
+    makeContainerPanelTask,
+    makeRefreshable(['loadAll']),
+    makeRefreshOnUpdate
 )(ComPanel);
 

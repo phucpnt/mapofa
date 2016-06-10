@@ -24,10 +24,17 @@ function translateTimeFrame(timeFrame) {
           to: null
         },
       };
-    case TF.NEXT_WEEK:
+    case TF.NEXT_WEEK: // FIXME remove the duplication
       return {
-        from: moment().startOf('week').add(1, 'week'),
-        to: moment().endOf('week').add(1, 'week'),
+        startDate: {
+          // from: moment().startOf('week').add(1, 'week').format('YYYY-MM-DD'),
+          from: null,
+          to: moment().endOf('week').add(1, 'week').format('YYYY-MM-DD'),
+        },
+        calEstEndDate: {
+          from: moment().startOf('week').add(1, 'week').format('YYYY-MM-DD'),
+          to: null,
+        },
       };
     default:
       throw new Error('Unknown timeframe');
@@ -93,6 +100,7 @@ export default function taskOps(podio, { appId, appField }) {
       filters[appField.assignee] = assignee;
     }
 
+    console.log('TASK FILTER >>', { timeFrame, status, category, assignee });
     return filters;
   }
 

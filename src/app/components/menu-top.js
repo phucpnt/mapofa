@@ -4,10 +4,16 @@
 
 import React, { Component, PropTypes } from 'react';
 import makeGlobFunComponent from '../containers/global-func';
+import * as TF from '../constants/timeframe';
+import classnames from 'classnames';
 
 import ConnStatusPodio from './connection-status-podio';
 
 class MenuTop extends Component {
+
+  _getGanttTask(timeFrame) {
+    return () => this.props.getGanttTask({ timeFrame });
+  }
 
   render() {
     const { onAdd } = this.props;
@@ -18,8 +24,13 @@ class MenuTop extends Component {
               <div className="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul className="nav navbar-nav">
                   <li><a href="#">Prev. week</a></li>
-                  <li className="active"><a href="#">This week<span className="sr-only">(current)</span></a></li>
-                  <li><a href="#">Next week</a></li>
+                  <li className={classnames({ active: this.props.currentTimeFrame === TF.WEEK })}>
+                    <a href="#" onClick={this._getGanttTask(TF.WEEK)}>This week<span
+                        className="sr-only">(current)</span></a>
+                  </li>
+                  <li className={classnames({ active: this.props.currentTimeFrame === TF.NEXT_WEEK })}>
+                    <a href="#" onClick={this._getGanttTask(TF.NEXT_WEEK)}>Next week</a>
+                  </li>
                   <li><a href="#">In Month</a></li>
                 </ul>
               </div>
@@ -43,7 +54,9 @@ class MenuTop extends Component {
 }
 
 MenuTop.propTypes = {
-  onAdd: PropTypes.func
+  onAdd: PropTypes.func,
+  currentTimeFrame: PropTypes.oneOf([TF.LAST_WEEK, TF.NEXT_WEEK, TF.WEEK]),
+  getGanttTask: PropTypes.func,
 };
 
 

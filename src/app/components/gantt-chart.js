@@ -17,6 +17,7 @@ class GanttChart extends Component {
 
   componentDidUpdate() {
     const { taskList } = this.props;
+    gantt.clearAll();
     gantt.parse({
       data: taskList.map(task => {
         const ganttTask = {
@@ -103,7 +104,6 @@ class GanttChart extends Component {
 
     // custom icon tree
     gantt.templates.grid_file = function (item) {
-      console.log(item);
       const doneIcon = item.status.toLowerCase() == TASK_STATUS_DONE ? '<i class="fa fa-check"></i>' : '';
       return `<div class='gantt_tree_icon'>${doneIcon}</div>`;
     };

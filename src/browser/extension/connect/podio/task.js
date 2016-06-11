@@ -36,6 +36,29 @@ function translateTimeFrame(timeFrame) {
           to: null,
         },
       };
+    case TF.LAST_WEEK: // FIXME remove the duplication
+      return {
+        startDate: {
+          from: null,
+          to: moment().endOf('week').subtract(1, 'week').format('YYYY-MM-DD'),
+        },
+        calEstEndDate: {
+          from: moment().startOf('week').subtract(1, 'week').format('YYYY-MM-DD'),
+          to: null,
+        },
+      };
+    case TF.MONTH: // FIXME remove the duplication
+      return {
+        startDate: {
+          // from: moment().startOf('week').add(1, 'week').format('YYYY-MM-DD'),
+          from: null,
+          to: moment().endOf('month').format('YYYY-MM-DD'),
+        },
+        calEstEndDate: {
+          from: moment().startOf('month').format('YYYY-MM-DD'),
+          to: null,
+        },
+      };
     default:
       throw new Error('Unknown timeframe');
   }

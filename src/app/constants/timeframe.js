@@ -5,3 +5,4 @@
 export const WEEK = 'week';
 export const LAST_WEEK = 'last-week';
 export const NEXT_WEEK = 'next-week';
+export const MONTH = 'month';

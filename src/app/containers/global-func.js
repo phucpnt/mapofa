@@ -35,7 +35,7 @@ function makeWrapCom(Com) {
   WrappedGlobalFunCom.propTypes = {
     onAdd: PropTypes.func,
     getGanttTask: PropTypes.func,
-    currentTimeFrame: PropTypes.oneOf([TF.LAST_WEEK, TF.NEXT_WEEK, TF.WEEK]),
+    currentTimeFrame: PropTypes.oneOf([TF.LAST_WEEK, TF.NEXT_WEEK, TF.WEEK, TF.MONTH]),
   };
 
   return WrappedGlobalFunCom;

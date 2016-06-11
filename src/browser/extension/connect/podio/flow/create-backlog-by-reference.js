@@ -53,7 +53,6 @@ export function process1By1(podio, { appUser, members, apiTask }, item) {
   return podio.request('GET', `/item/${item.item_id}`)
       .then(apiTask.checkItemHasAcceptedType)
       .then(itemObj => {
-        console.info('accept item', itemObj);
         const implementers = chooseImplementers(itemObj);
         return apiTask.create({
           subject: `${itemObj.title} - Request`,
@@ -74,7 +73,7 @@ export default function createBacklogByReference(podio, { appId, appField, works
   const apiTask = taskOps(podio, { appId, appField });
 
   // retrieve top notifications
-  // indentify the reference_member_add
+  // identify the reference_member_add
   // process the request reference -> create backlog -> assign suggested person first.
   // add description with links to request referenced item.
   // TODO mark processed notification as READ

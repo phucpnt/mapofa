@@ -13,6 +13,7 @@ gulp.task('webpack-dev-server', () => {
   });
   new WebpackDevServer(compiler, {
     contentBase: './dev',
+    https: true,
     publicPath: myConfig.output.publicPath,
     stats: { colors: true },
     noInfo: true,

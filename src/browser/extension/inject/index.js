@@ -1,23 +1,21 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Root from 'app/containers/Root';
+import Root from 'app/containers/RootPodioInject';
 import configureStore from 'app/store/configureStore';
 
 configureStore(store => {
 
+  console.log('hello world');
   window.addEventListener('load', () => {
     let injectDiv = document.createElement('div');
-    injectDiv.style.margin = '0 auto';
-    injectDiv.style.padding = '10px 0';
-    injectDiv.style.width = '210px';
-    injectDiv.style.border = '1px solid #ccc';
-    injectDiv.style.textAlign = 'center';
-    injectDiv.className = 'crossbuilder';
+    injectDiv.id = 'mapofa-inject'
+    injectDiv.className = 'mapofa-inject';
+
     document.body.appendChild(injectDiv);
 
     render(
-      <Root store={store} />,
-      injectDiv
+        <Root store={store} />,
+        injectDiv
     );
   });
 

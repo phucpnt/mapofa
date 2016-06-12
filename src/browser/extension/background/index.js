@@ -27,9 +27,9 @@ configureStore(store => {
   createMenu();
   // initBadge();
 
-  if (process.env.NODE_ENV !== 'production') {
-    require('./inject');
-  }
+  // if (process.env.NODE_ENV !== 'production') {
+  //   require('./inject');
+  // }
 }, true);
 
 /**

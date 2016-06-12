@@ -3,7 +3,7 @@ import { show } from '../iframe-3rd-party/action-iframe-full';
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    showFullDetail(item) {
+    onClick(item) {
       return dispatch(show(item.link));
     }
   };

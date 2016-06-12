@@ -11,6 +11,7 @@ import TaskGroup from './task/task-group';
 import TaskItem from './task/task-item';
 
 import makePanelTask from '../containers/task/container-panel-task';
+import makeContainerTask from '../containers/task/container-task';
 import classnames from 'classnames';
 
 class PanelTask extends Component {
@@ -56,12 +57,18 @@ class PanelTask extends Component {
   constructor(props) {
     super(props);
     this.loadAll = tabView => this.props.loadAll(tabView);
+    console.log(this.props.buildComItem);
+    this.TaskItemCustom = this.props.buildComItem ? this.props.buildComItem(TaskItem) : TaskItem;
   }
 
   renderTaskGroup(tabId, taskGroup, itemList) {
 
+    const TaskItemCustom = this.TaskItemCustom;
+    
+    console.log(TaskItemCustom);
+
     if (PTT_BACKLOG === tabId) {
-      return itemList.map(item => (<TaskItem key={item.id} {...item} />));
+      return itemList.map(item => (<TaskItemCustom key={item.id} {...item} />));
     }
 
     return taskGroup.map(group => {
@@ -69,6 +76,7 @@ class PanelTask extends Component {
       if (groupItemList.length) {
         return (
             <TaskGroup key={group.label} label={group.label} className={group.className}
+                       buildComItem={this.props.buildComItem}
                        itemList={groupItemList}/>
         );
       }
@@ -110,10 +118,12 @@ class PanelTask extends Component {
 PanelTask.propTypes = {
   tabActive: PropTypes.oneOf([PTT_BACKLOG, PTT_MYTASK, PTT_NOTDONE]),
   itemList: PropTypes.array,
+  buildComItem: PropTypes.func,
 };
 
 PanelTask.defaultProps = {
-  itemList: []
+  itemList: [],
+  buildComItem: makeContainerTask,
 };
 
 export default makePanelTask(PanelTask);

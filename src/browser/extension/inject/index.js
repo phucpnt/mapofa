@@ -5,7 +5,6 @@ import configureStore from 'app/store/configureStore';
 
 configureStore(store => {
 
-  console.log('hello world');
   window.addEventListener('load', () => {
     let injectDiv = document.createElement('div');
     injectDiv.id = 'mapofa-inject'

@@ -24,8 +24,7 @@ function makeContainerPanelTask(ComPanel) {
     }
 
     render() {
-      const { tabActive, itemList, isLoading, loadAll } = this.props;
-      return (<ComPanel tabActive={tabActive} itemList={itemList} isLoading={isLoading} loadAll={loadAll}/>);
+      return (<ComPanel {...this.props}/>);
     }
   }
 

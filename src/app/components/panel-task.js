@@ -57,15 +57,12 @@ class PanelTask extends Component {
   constructor(props) {
     super(props);
     this.loadAll = tabView => this.props.loadAll(tabView);
-    console.log(this.props.buildComItem);
     this.TaskItemCustom = this.props.buildComItem ? this.props.buildComItem(TaskItem) : TaskItem;
   }
 
   renderTaskGroup(tabId, taskGroup, itemList) {
 
     const TaskItemCustom = this.TaskItemCustom;
-    
-    console.log(TaskItemCustom);
 
     if (PTT_BACKLOG === tabId) {
       return itemList.map(item => (<TaskItemCustom key={item.id} {...item} />));

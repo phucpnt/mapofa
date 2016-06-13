@@ -1,6 +1,7 @@
 import { isConnected } from './connect-podio';
 import taskOps from './task';
 import contactOps from './contact';
+import itemOps from './item';
 import { DevTaskField } from './helper/podio-id-list';
 import createPushServicePodio from './create-push-service';
 
@@ -17,6 +18,7 @@ export default function getApi({
   const api = podio => ({
     task: taskOps(podio, { appId: taskAppId, appField: DevTaskField }),
     contact: contactOps(podio, { workspaceId }),
+    item: itemOps(podio, { taskAppId }),
     registerUpdateHandler(messageHandle) {
       createPushServicePodio(podio, { workspaceId, messageHandle });
     }

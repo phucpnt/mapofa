@@ -4,6 +4,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import PanelTask from '../panel-task';
+import WorkItemReference from './work-item-reference';
 
 class NavWorkItem extends Component {
 
@@ -21,8 +22,15 @@ class NavWorkItem extends Component {
   render() {
     console.log(this.buildComItem);
     return (
-        <div className="js-panel-wrapper">
-          <PanelTask buildComItem={this.buildComItem}/>
+        <div className="js-panel-wrapper panel-wrapper-container">
+          <div className="wrap-work-item-reference">
+            <WorkItemReference />
+          </div>
+          <div className="wrapper-panel-task">
+            <div className="wrapper-inner">
+              <PanelTask buildComItem={this.buildComItem}/>
+            </div>
+          </div>
         </div>
     );
   }

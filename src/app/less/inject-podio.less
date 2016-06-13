@@ -1,5 +1,24 @@
-.work-item-nav{
+.work-item-nav {
   min-width: 400px;
   min-height: 600px;
+
+  .panel-wrapper-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .wrapper-panel-task {
+    flex: 1;
+  }
+  .wrapper-inner {
+    height: 100%;
+    position: relative;
+  }
 }
+
 @import './panel-task';

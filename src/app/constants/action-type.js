@@ -68,3 +68,9 @@ export const PANEL_TAB_ACTIVE = 'panel_task/tab_active';
 export const IFRAME_FULL_SHOW = 'iframe_full/show';
 export const IFRAME_FULL_HIDE = 'iframe_full/hide';
 
+
+/**
+ * item reference
+ */
+export const ITEM_REF_REQUEST = 'item_ref/request';
+export const ITEM_REF_RECEIVE = 'item_ref/receive';

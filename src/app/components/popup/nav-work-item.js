@@ -20,7 +20,6 @@ class NavWorkItem extends Component {
   }
 
   render() {
-    console.log(this.buildComItem);
     return (
         <div className="js-panel-wrapper panel-wrapper-container">
           <div className="wrap-work-item-reference">

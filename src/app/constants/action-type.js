@@ -74,3 +74,5 @@ export const IFRAME_FULL_HIDE = 'iframe_full/hide';
  */
 export const ITEM_REF_REQUEST = 'item_ref/request';
 export const ITEM_REF_RECEIVE = 'item_ref/receive';
+export const ITEM_REF_TASK_CREATE_REQUEST = 'item_ref/task/create/request';
+export const ITEM_REF_TASK_CREATE_RECEIVE = 'item_ref/task/create/receive';

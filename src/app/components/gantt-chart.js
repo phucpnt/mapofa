@@ -89,12 +89,10 @@ class GanttChart extends Component {
     });
 
     // today marker
-    const dateToStr = gantt.date.date_to_str(gantt.config.task_date);
-    gantt.addMarker({
-      start_date: new Date(),
-      css: 'today',
-      text: 'Today',
-      title: 'Today: ' + dateToStr(new Date())
+    let tid = this._setupTodayMarker();
+    gantt.attachEvent('onClear', () => {
+      clearInterval(tid);
+      tid = this._setupTodayMarker();
     });
 
     // right side content
@@ -107,6 +105,17 @@ class GanttChart extends Component {
       const doneIcon = item.status.toLowerCase() == TASK_STATUS_DONE ? '<i class="fa fa-check"></i>' : '';
       return `<div class='gantt_tree_icon'>${doneIcon}</div>`;
     };
+  }
+
+  _setupTodayMarker() {
+    const dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+    const id = gantt.addMarker({ start_date: new Date(), css: "today", text: 'Today', title: dateToStr(new Date()) });
+    return setInterval(function () {
+      const today = gantt.getMarker(id);
+      today.start_date = new Date();
+      today.title = dateToStr(today.start_date);
+      gantt.updateMarker(id);
+    }, 1000 * 60);
   }
 
   componentDidMount() {

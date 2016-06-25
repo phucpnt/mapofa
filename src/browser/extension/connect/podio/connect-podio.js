@@ -2,7 +2,7 @@
  * Created by phucpnt on 5/14/16.
  */
 
-import {api as PodioJs} from 'podio-js';
+import { api as PodioJs } from 'podio-js';
 import URI from 'urijs';
 
 const sessionStore = {
@@ -23,16 +23,19 @@ let _podioInstance;
 
 function podioInstance() {
   return _podioInstance || (_podioInstance = new PodioJs({
-    authType: 'server',
-    clientId: 'mapofa',
-    clientSecret: 'pfPUmjzqgKQrfQV9J9jVhksfsY5YKGtD7Ckrxx5ifC7fxQsrF8JTS4VKCqoUYvDY',
-  }, { sessionStore }));
+        authType: 'server',
+        clientId: 'mapofa',
+        clientSecret: 'pfPUmjzqgKQrfQV9J9jVhksfsY5YKGtD7Ckrxx5ifC7fxQsrF8JTS4VKCqoUYvDY',
+      }, { sessionStore }));
 }
 
 export function doAuth(callback) {
   const podio = podioInstance();
 
+  podio.onTokenWillRefresh = () => callback(podio);
   podio.isAuthenticated().then(() => {
+    console.trace();
+    console.log('isAuthenticated', podio);
     callback(podio);
   }).catch((err) => {
     chrome.identity.launchWebAuthFlow({
@@ -49,8 +52,6 @@ export function doAuth(callback) {
 }
 
 export function isConnected() {
-  return podioInstance().isAuthenticated().then(() => {
-    return podioInstance();
-  });
+  return new Promise((resolve, reject) => doAuth(podio => resolve(podio)));
 }
 
